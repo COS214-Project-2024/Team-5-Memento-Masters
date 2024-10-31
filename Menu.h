@@ -10,27 +10,29 @@ using namespace std;
 class Menu {
 private:
     string title;
+    int level;
     vector<shared_ptr<MenuCommand>> commands;
     Menu* parentMenu;
     bool shouldExit;
 
 public:
-    Menu(const string& menuTitle, Menu* parent = nullptr) 
-        : title(menuTitle), parentMenu(parent), shouldExit(false) {}
+    Menu(const string& menuTitle, Menu* parent = nullptr, int lvl = 0) 
+        : title(menuTitle), parentMenu(parent), shouldExit(false), level(lvl) {}
 
     void addCommand(shared_ptr<MenuCommand> command) {
         commands.push_back(command);
     }
 
     void display() const {
-        cout << "\n=== " << title << " ===\n";
+        string indentation(level * 4, ' ');
+        cout << "\n" << indentation << "=== " << title << " ===\n";
         for (size_t i = 0; i < commands.size(); i++) {
-            cout << i + 1 << ". " << commands[i]->getDescription() << "\n";
+            cout << indentation << i + 1 << ". " << commands[i]->getDescription() << "\n";
         }
         if (parentMenu) {
-            cout << commands.size() + 1 << ". Back\n";
+            cout << indentation << commands.size() + 1 << ". Back\n";
         }
-        cout << "\nEnter your choice: ";
+        cout << "\n" << indentation << "Enter your choice: ";
     }
 
     void execute() {
