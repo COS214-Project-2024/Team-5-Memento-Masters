@@ -10,7 +10,7 @@ using namespace std;
 
 class City {
     private:
-        vector<CityObserver*> observerList; 
+        vector<CityObserver*> observerList; ///< List of observers observing the city
         vector<Citizen*> citizens;
         // double taxRate;
         double incomeTaxRate;
@@ -28,11 +28,28 @@ class City {
 
         void setPropertyTaxRate(double rate);
 
+        /**
+         * @brief Attaches an observer to the city
+         * 
+         * @param observer The observer to be attached
+         */
         void attach(CityObserver* observer);
 
+        /**
+         * @brief Detaches an observer from the city
+         * 
+         * @param observer The observer to be detached
+         */
         void detach(CityObserver* observer);
 
         // void notify();
+
+        /**
+         * @brief Notifies observers of a change in tax rate
+         * 
+         * @param taxType The type of tax that has changed
+         * @param newRate The new rate of the tax
+         */
         void notify(const std::string& taxType, double newRate);
         //void notify(bool isTaxIncrease);
 
