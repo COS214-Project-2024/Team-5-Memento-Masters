@@ -15,6 +15,14 @@ class City {
         int population;
         string name;
         double crimeRate;
+        int housingCapacity;
+        int housingDemand;
+        int powerCapacity;
+        int powerDemand;
+        double trafficIndex;
+        double entertainmentIndex;
+        double healthcareIndex;
+        double educationIndex;
 
     public:
         City(int width, int height, string name);
