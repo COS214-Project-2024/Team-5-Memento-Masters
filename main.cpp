@@ -1,11 +1,11 @@
-#include "City.h"
-#include "MapNode.h"
-#include "Menu.h"
-#include "BuildCommand.h"
-#include "PolicyCommand.h"
-#include "ContinueCommand.h"
-#include "HelpCommand.h"
-#include "ExitCommand.h"
+#include "CommandUI/City.h"
+#include "CommandUI/MapNode.h"
+#include "CommandUI/Menu.h"
+#include "CommandUI/BuildCommand.h"
+#include "CommandUI/PolicyCommand.h"
+#include "CommandUI/ContinueCommand.h"
+#include "CommandUI/HelpCommand.h"
+#include "CommandUI/ExitCommand.h"
 
 #include <iostream>
 using namespace std;
