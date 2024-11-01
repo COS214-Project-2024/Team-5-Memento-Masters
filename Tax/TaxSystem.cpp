@@ -17,7 +17,9 @@ float TaxSystem::getTaxRate() const {
 }
 
 void TaxSystem::setTaxRate(float newRate) {
-    taxRate = newRate;
+    if (newRate >= 0.0f) taxRate = newRate;
+        else 
+    throw std::invalid_argument("Tax rate cannot be negative");
 }
 
 void TaxSystem::displayTaxRate() const {
