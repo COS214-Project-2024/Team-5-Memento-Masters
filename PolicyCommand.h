@@ -1,18 +1,17 @@
 #ifndef POLICYCOMMAND_H
 #define POLICYCOMMAND_H
 #include "Menu.h"
-
-
+#include "TaxCommand.h"
+#include "ChangePolicyCommand.h"
 
 class PolicyCommand : public MenuCommand {
 public:
     void execute(Menu* currentMenu) override {
-        Menu policyMenu("Policy Menu", currentMenu);
+        Menu policyMenu("Policy Menu", currentMenu, 1);
         // TODO : add policy related commands
-        // policyMenu.addCommand(std::make_shared<TaxRateCommand>());
-        // policyMenu.addCommand(std::make_shared<PropertyTaxCommand>());
-        // policyMenu.addCommand(std::make_shared<SalesTaxCommand>());
-        // policyMenu.addCommand(std::make_shared<PolicySettingsCommand>());
+
+        policyMenu.addCommand(std::make_shared<TaxCommand>());
+        policyMenu.addCommand(std::make_shared<ChangePolicyCommand>());
         
         policyMenu.execute();
     }

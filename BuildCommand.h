@@ -9,7 +9,7 @@
 class BuildCommand : public MenuCommand {
 public:
     void execute(Menu* currentMenu) override {
-        Menu buildMenu("Building Menu", currentMenu);
+        Menu buildMenu("Building Menu", currentMenu, 1);
         
         buildMenu.addCommand(std::make_shared<ResidentialCommand>());
         buildMenu.addCommand(std::make_shared<CommercialCommand>());
