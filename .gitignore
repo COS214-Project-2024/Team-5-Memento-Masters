@@ -35,3 +35,6 @@
 .idea/*
 
 build
+
+#Ignore visual studio code settings folder
+.vscode/*

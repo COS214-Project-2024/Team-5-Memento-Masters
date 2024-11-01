@@ -56,4 +56,4 @@ int Citizen::calculateHealth() {
 Citizen::Citizen(const string &name, int age, bool hasCriminalRecord, const string &jobTitle) : name(name), age(age),
                                                                                                 hasCriminalRecord(
                                                                                                         hasCriminalRecord),
-                                                                                                jobTitle(jobTitle) {}
+                                                                                                jobTitle(jobTitle), mood(nullptr) {}
