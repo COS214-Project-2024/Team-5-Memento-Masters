@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <string>
-#include "CityObserver.h"
+#include "Observer/CityObserver.h"
 #include "Citizen.h"
 #include <algorithm>
 using namespace std;
@@ -12,7 +12,6 @@ class City {
     private:
         vector<CityObserver*> observerList; ///< List of observers observing the city
         vector<Citizen*> citizens;
-        // double taxRate;
         double incomeTaxRate;
         double salesTaxRate;
         double propertyTaxRate;
@@ -21,7 +20,6 @@ class City {
     public:
         City();
         ~City();
-        //void adjustTaxRate(double newTaxRate);
         void setIncomeTaxRate(double rate);
 
         void setSalesTaxRate(double rate);
@@ -42,8 +40,6 @@ class City {
          */
         void detach(CityObserver* observer);
 
-        // void notify();
-
         /**
          * @brief Notifies observers of a change in tax rate
          * 
@@ -51,9 +47,8 @@ class City {
          * @param newRate The new rate of the tax
          */
         void notify(const std::string& taxType, double newRate);
-        //void notify(bool isTaxIncrease);
 
-        vector<Citizen*> getCitizens();
+        std::vector<Citizen*> getCitizens();
         void addCitizen(Citizen* citizen);
         double getTaxRate();
 

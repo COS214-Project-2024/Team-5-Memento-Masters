@@ -38,11 +38,6 @@ void City::detach(CityObserver* observer){
    }
 }
 
-// void City::notify(){
-//     for(CityObserver* observer : this->observerList) {
-//         observer->update();
-//     }
-// }
 
 void City::notify(const std::string& taxType, double newRate){
     for(CityObserver* observer : this->observerList) {
