@@ -5,7 +5,7 @@ using namespace std;
 
 #include "LandmarkBuildingFactory.h"
 
-void LandmarkBuildingFactory::createBuildingType(string type) {
+Building* LandmarkBuildingFactory::createBuilding(string type) {
 	throw "Not yet implemented";
 }
 

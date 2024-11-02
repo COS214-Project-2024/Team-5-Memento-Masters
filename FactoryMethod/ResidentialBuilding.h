@@ -21,4 +21,4 @@ public:
     virtual ~ResidentialBuilding() = default;
 };
 
-#endif
+#endif //ResidentialBuilding(cost:int, resConsumption:double, maxCap:int) : Building(cost, "Residential")

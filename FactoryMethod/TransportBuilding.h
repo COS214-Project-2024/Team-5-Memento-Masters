@@ -19,4 +19,4 @@ public:
     virtual ~TransportBuilding() = default;
 };
 
-#endif
+#endif //TransportBuilding(cost:int, effVal:int)

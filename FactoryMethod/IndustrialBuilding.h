@@ -20,4 +20,4 @@ public:
     virtual ~IndustrialBuilding() = default;
 };
 
-#endif//INDUSTRIALBUILDING_H
+#endif//INDUSTRIALBUILDING_H IndustrialBuilding(cost:int, prodRate:double, resConsumption:double)

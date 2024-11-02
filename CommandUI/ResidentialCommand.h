@@ -1,8 +1,13 @@
 #ifndef RESIDENTIALCOMMAND_H
 #define RESIDENTIALCOMMAND_H
+
+#include "../FactoryMethod/ResidentialBuildingFactory.h"
+#include "../FactoryMethod/Building.h"
 #include "Menu.h"
 
 class ResidentialCommand : public MenuCommand {
+private:
+    ResidentialBuildingFactory* factory;
 public:
     void execute(Menu* currentMenu) override {
         string result = "";
@@ -19,12 +24,15 @@ public:
         cout << "\n" << indentation << "Enter your choice: ";
         cin >> input;
 
+        Building* newBuilding = nullptr;
+        string buildingType;
+
         switch (input){
             case 'a': 
-                result = "House";
+                buildingType = "House";
                 break;
             case 'b':
-                result = "Apartment";
+                buildingType = "Apartment";
                 break;
             default:
                 return;
@@ -34,9 +42,15 @@ public:
         string coord = "";
         cin >> coord;
 
-        cout << "\n" << indentation << "Building " << result << " at " << coord << "\n";
-        // Building logic here
-        // TODO link to factory method
+        newBuilding = factory->createBuilding(buildingType);
+        
+        if (newBuilding != nullptr) {
+            // Add the building to the city at the specified coordinates
+            city->constructBuilding(buildingType, coord);
+            cout << "\n" << indentation << "Building " << buildingType << " at " << coord << "\n";
+        } else {
+            cout << "\n" << indentation << "Error: Failed to create building.\n";
+        }
     }
     
     const char* getDescription() const override {

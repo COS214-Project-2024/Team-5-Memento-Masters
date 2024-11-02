@@ -5,7 +5,7 @@ using namespace std;
 
 #include "CommercialBuildingFactory.h"
 
-void CommercialBuildingFactory::createBuildingType(string type) {
+Building* CommercialBuildingFactory::createBuilding(string type) {
 	throw "Not yet implemented";
 }
 

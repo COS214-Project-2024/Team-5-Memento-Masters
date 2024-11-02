@@ -19,4 +19,4 @@ public:
     virtual ~LandmarkBuilding() = default;
 };
 
-#endif //LANDMARKBUILDING_H
+#endif //LANDMARKBUILDING_H LandmarkBuilding(cost:int, entertainment:int)

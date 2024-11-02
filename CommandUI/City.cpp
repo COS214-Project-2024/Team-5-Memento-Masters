@@ -34,27 +34,40 @@ void City::printMap() {
 
     // Print the map with row coordinates
     for (size_t rowIndex = 0; rowIndex < map.size(); ++rowIndex) {
-        // Print row separator
         std::cout << "   ";
         for (size_t i = 0; i < map[rowIndex].size(); ++i) {
             std::cout << "----- ";
         }
         std::cout << std::endl;
 
-        // Print row label (1, 2, 3, etc.)
         std::cout << std::setw(2) << rowIndex + 1 << " "; // Row index with padding
 
         // Print each MapNode in the row
         for (const auto& node : map[rowIndex]) {
             std::cout << "|" << node.printNode() << "| ";
         }
-        std::cout << std::endl; // Close the row with a final "|"
+        std::cout << std::endl; 
     }
-
-    // Print the final row separator
     std::cout << "   ";
     for (size_t i = 0; i < map[0].size(); ++i) {
         std::cout << "----- ";
     }
     std::cout << std::endl;
+}
+
+void City::constructBuilding(string buildingType, string coord){
+    if (coord.length() < 2) {
+        throw invalid_argument("Invalid coordinate format.");
+    }
+
+    char colLetter = coord[0];
+    int colIndex = toupper(colLetter) - 'A';
+
+    int rowIndex = stoi(coord.substr(1)) - 1;
+
+    if (rowIndex < 0 || rowIndex >= map.size() || colIndex < 0 || colIndex >= map[0].size()) {
+        throw out_of_range("Coordinates are out of map bounds.");
+    }
+
+    map[rowIndex][colIndex] = MapNode(buildingType);
 }

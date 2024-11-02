@@ -27,6 +27,7 @@ class City {
 
     public:
         City(int width, int height, string name);
+        void constructBuilding(string buildingType, string coord);
         void printMap();
 
 };
