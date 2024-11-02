@@ -1,9 +1,9 @@
 #include <exception>
 using namespace std;
 
-#include "LandmarkBuilding.h"
+#include "TransportBuilding.h"
 
-void LandmarkBuilding::updateEntertainment() {
+void TransportBuilding::updateEfficiency() {
 	throw "Not yet implemented";
 }
 

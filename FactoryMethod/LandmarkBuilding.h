@@ -1,17 +1,22 @@
+
+using namespace std;
+
 #ifndef LANDMARKBUILDING_H
 #define LANDMARKBUILDING_H
 
 #include "Building.h"
 
-class LandmarkBuilding : public Building {
-public:
-    LandmarkBuilding() {
-        buildingType = "Landmark Building";
-    }
+class LandmarkBuilding: public Building
+{
+private: 
+    int entertainmentValue;
 
-    void construct() override {
-        std::cout << "Constructing a Landmark Building\n";
-    }
+public: 
+    LandmarkBuilding(int cost, int entertainment = 0) : Building(cost, "Landmark"), entertainmentValue(entertainment) {}
+
+    void updateEntertainment();
+    
+    virtual ~LandmarkBuilding() = default;
 };
 
-#endif // LANDMARKBUILDING_H
+#endif //LANDMARKBUILDING_H

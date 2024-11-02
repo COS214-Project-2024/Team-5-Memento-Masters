@@ -1,9 +1,9 @@
 #include <exception>
 using namespace std;
 
-#include "LandmarkBuilding.h"
+#include "WasteOut.h"
 
-void LandmarkBuilding::updateEntertainment() {
+void WasteOut::operate() {
 	throw "Not yet implemented";
 }
 

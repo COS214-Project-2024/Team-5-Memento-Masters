@@ -3,9 +3,9 @@
 #include <vector>
 using namespace std;
 
-#include "ResidentialBuildingFactory.h"
+#include "TransportBuildingFactory.h"
 
-void ResidentialBuildingFactory::createBuildingType(string type) {
+void TransportBuildingFactory::createBuildingType(string type) {
 	throw "Not yet implemented";
 }
 
