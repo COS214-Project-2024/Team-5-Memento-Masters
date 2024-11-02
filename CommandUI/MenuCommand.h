@@ -1,7 +1,7 @@
 #ifndef MENUCOMMAND_H
 #define MENUCOMMAND_H
 
-#include "City.h"
+#include "../City.h"
 
 class Menu;
 

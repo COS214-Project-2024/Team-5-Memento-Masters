@@ -1,11 +1,16 @@
 #ifndef CITY_H
 #define CITY_H
 
+#include "CommandUI/MapNode.h"
+#include "Citizen.h"
+#include "Observer/CityObserver.h"
+
 #include <vector>
 #include <string>
-#include "Observer/CityObserver.h"
-#include "Citizen.h"
 #include <algorithm>
+#include <iostream>
+#include <iomanip>
+
 using namespace std;
 
 class City {
@@ -15,11 +20,25 @@ class City {
         double incomeTaxRate;
         double salesTaxRate;
         double propertyTaxRate;
+        vector<vector<MapNode>> map;
+        int population;
+        string name;
+        double crimeRate;
+        int housingCapacity;
+        int housingDemand;
+        int powerCapacity;
+        int powerDemand;
+        double trafficIndex;
+        double entertainmentIndex;
+        double healthcareIndex;
+        double educationIndex;
     protected:
 
     public:
         City();
-        ~City();
+
+        void initMap(int width, int height);
+
         void setIncomeTaxRate(double rate);
 
         void setSalesTaxRate(double rate);
@@ -52,6 +71,9 @@ class City {
         void addCitizen(Citizen* citizen);
         double getTaxRate();
 
-};
+        void constructBuilding(string buildingType, string coord);
+        void printMap();
+        ~City();
 
-#endif
+};
+#endif //CITY_H
