@@ -6,6 +6,10 @@
 
 class HelpCommand : public MenuCommand {
 public:
+    HelpCommand(City* cityRef) : MenuCommand(cityRef){} 
+
+    ~HelpCommand() override {}
+
     void execute(Menu* currentMenu) override {
         Menu helpMenu("Help Menu", currentMenu);
         cout << "Getting Help";

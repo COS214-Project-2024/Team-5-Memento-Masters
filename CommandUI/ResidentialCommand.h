@@ -9,6 +9,14 @@ class ResidentialCommand : public MenuCommand {
 private:
     ResidentialBuildingFactory* factory;
 public:
+    ResidentialCommand(City* cityRef) : MenuCommand(cityRef){
+        factory = new ResidentialBuildingFactory();
+    } 
+
+    ~ResidentialCommand() override {
+        delete factory;
+    }
+
     void execute(Menu* currentMenu) override {
         string result = "";
         string indentation(2 * 4, ' ');
@@ -43,7 +51,7 @@ public:
         cin >> coord;
 
         newBuilding = factory->createBuilding(buildingType);
-        
+
         if (newBuilding != nullptr) {
             // Add the building to the city at the specified coordinates
             city->constructBuilding(buildingType, coord);

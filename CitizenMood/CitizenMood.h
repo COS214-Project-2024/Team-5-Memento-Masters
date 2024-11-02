@@ -6,7 +6,7 @@
 #include "string"
 #include "vector"
 
-#include "Citizen.h"
+#include "../Citizen.h"
 
 using namespace std;
 
