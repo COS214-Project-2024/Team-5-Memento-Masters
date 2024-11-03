@@ -12,7 +12,7 @@ public:
 
     void execute(Menu* currentMenu) override {
         Menu continueMenu("Continue Menu", currentMenu);
-        cout << "Continuing Simulation";
+        cout << "Continuing Simulation\n";
         city->printMap();
 
         continueMenu.execute();

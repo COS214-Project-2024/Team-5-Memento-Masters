@@ -5,6 +5,7 @@
 #include "CommercialCommand.h"
 #include "IndustrialCommand.h"
 #include "TransportCommand.h"
+#include "RemoveCommand.h"
 
 class BuildCommand : public MenuCommand {
 public:
@@ -19,7 +20,8 @@ public:
         buildMenu.addCommand(std::make_shared<CommercialCommand>(city));
         buildMenu.addCommand(std::make_shared<IndustrialCommand>(city));
         buildMenu.addCommand(std::make_shared<TransportCommand>(city));
-        
+        buildMenu.addCommand(std::make_shared<RemoveCommand>(city));
+
         buildMenu.execute();
     }
     

@@ -50,11 +50,23 @@ public:
         string coord = "";
         cin >> coord;
 
+        string check = city->checkCoord(coord);
+
+        if (check != ""){
+           cout << "\n" << indentation << check << "\n";
+           return;
+        }
+
+        char colLetter = coord[0];
+        int colIndex = toupper(colLetter) - 'A';
+
+        int rowIndex = stoi(coord.substr(1)) - 1;
+        
         newBuilding = factory->createBuilding(buildingType);
 
         if (newBuilding != nullptr) {
             // Add the building to the city at the specified coordinates
-            city->constructBuilding(buildingType, coord);
+            city->constructBuilding(buildingType, coord, newBuilding);
             cout << "\n" << indentation << "Building " << buildingType << " at " << coord << "\n";
         } else {
             cout << "\n" << indentation << "Error: Failed to create building.\n";

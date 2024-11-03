@@ -1,7 +1,7 @@
 #include "MapNode.h"
 using namespace std;
 
-MapNode::MapNode(string type) : tileType(type)
+MapNode::MapNode(string type, Building* building) : tileType(type), buildingPtr(building) 
 {
     if (tileType == "Grass") {
         displayChar = "\033[30;42m   \033[0m"; // Green background
@@ -36,8 +36,32 @@ MapNode::MapNode(string type) : tileType(type)
 
 MapNode::~MapNode()
 {
+    if (buildingPtr != nullptr){
+        delete buildingPtr;
+    }
 }
 
 string MapNode::printNode() const{
     return displayChar;
+}
+
+string MapNode::getType() const{
+    return tileType;
+}
+
+Building* MapNode::getBuilding() const{
+    return buildingPtr;
+}
+
+void MapNode::setBuilding(Building* newBuilding) {
+    delete buildingPtr;
+    buildingPtr = newBuilding;
+}
+
+void MapNode::clearBuilding() {
+    if (buildingPtr != nullptr){
+        delete buildingPtr;
+    }
+    
+    buildingPtr = nullptr;
 }

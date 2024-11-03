@@ -58,9 +58,7 @@ void City::addCitizen(Citizen* citizen){
 
 void City::initMap(int width, int height){
 // Initialize map with default nodes for demonstration
-    
     map.resize(height, vector<MapNode>(width, MapNode("Grass")));
-    map[0][0] = MapNode("Road");
 }
 
 void City::printMap() {
@@ -94,9 +92,9 @@ void City::printMap() {
     std::cout << std::endl;
 }
 
-void City::constructBuilding(string buildingType, string coord){
+string City::checkCoord(string coord, bool forRemoval){
     if (coord.length() < 2) {
-        throw invalid_argument("Invalid coordinate format.");
+        return "\nInvalid Co-ordinate";
     }
 
     char colLetter = coord[0];
@@ -105,10 +103,60 @@ void City::constructBuilding(string buildingType, string coord){
     int rowIndex = stoi(coord.substr(1)) - 1;
 
     if (rowIndex < 0 || rowIndex >= map.size() || colIndex < 0 || colIndex >= map[0].size()) {
-        throw out_of_range("Coordinates are out of map bounds.");
+        return "\n" + coord + " out of bounds";
     }
 
-    map[rowIndex][colIndex] = MapNode(buildingType);
+    if (forRemoval == false){
+        if (map[rowIndex][colIndex].getBuilding() != nullptr){
+            return "Building already exists at " + coord;
+        }
+    }
+   
+    return "";
+}
+
+void City::constructBuilding(string buildingType, string coord, Building* buildptr){
+    string check = checkCoord(coord);
+
+    char colLetter = coord[0];
+    int colIndex = toupper(colLetter) - 'A';
+
+    int rowIndex = stoi(coord.substr(1)) - 1;
+
+    if (check == ""){
+        map[rowIndex][colIndex] = MapNode(buildingType, buildptr);
+    }
+}
+
+bool City::hasBuildingAt(int row, int col) const {
+    return map[row][col].getBuilding() != nullptr;
+}
+
+string City::getBuildingTypeAt(int row, int col) const {
+    if (hasBuildingAt(row, col)) {
+        return map[row][col].getType();
+    }
+    return "Empty";
+}
+
+bool City::demolishBuilding(const string& coord) {
+    try {
+        char colLetter = coord[0];
+        int colIndex = toupper(colLetter) - 'A';
+        int rowIndex = stoi(coord.substr(1)) - 1;
+
+        if (rowIndex < 0 || rowIndex >= map.size() || 
+            colIndex < 0 || colIndex >= map[0].size()) {
+            return false;
+        }
+
+        map[rowIndex][colIndex] = MapNode("Grass");  
+        
+        return true;
+
+    } catch (const std::exception& e) {
+        return false;
+    }
 }
 
 // double City::getTaxRate(){

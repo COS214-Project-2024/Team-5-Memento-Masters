@@ -71,8 +71,13 @@ class City {
         void addCitizen(Citizen* citizen);
         double getTaxRate();
 
-        void constructBuilding(string buildingType, string coord);
+        void constructBuilding(string buildingType, string coord, Building* buildptr);
         void printMap();
+        bool hasBuildingAt(int row, int col) const;
+        string getBuildingTypeAt(int row, int col) const;
+        bool demolishBuilding(const string& coord);
+        string checkCoord(string coord, bool forRemoval = false);
+
         ~City();
 
 };
