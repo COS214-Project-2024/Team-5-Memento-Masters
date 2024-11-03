@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.16.3)
 project(MementoMasters)
 
 set(CMAKE_CXX_STANDARD 14)
+# Add debug flags
+set(CMAKE_BUILD_TYPE Debug)
 
 include(FetchContent)
 FetchContent_Declare(
