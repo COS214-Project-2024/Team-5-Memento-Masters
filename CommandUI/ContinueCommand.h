@@ -2,8 +2,6 @@
 #define CONTINUECOMMAND_H
 #include "Menu.h"
 
-
-
 class ContinueCommand : public MenuCommand {
 public:
     ContinueCommand(City* cityRef) : MenuCommand(cityRef){} 

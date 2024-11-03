@@ -8,7 +8,7 @@ class MapNode
 {
 private:
     Building* buildingPtr;
-    std::string tileType;
+    std::string nodeType;
     std::string displayChar;
 
 public:

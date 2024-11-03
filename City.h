@@ -65,9 +65,9 @@ class City {
          * @param taxType The type of tax that has changed
          * @param newRate The new rate of the tax
          */
-        void notify(const std::string& taxType, double newRate);
+        void notify(const string& taxType, double newRate);
 
-        std::vector<Citizen*> getCitizens();
+        vector<Citizen*> getCitizens();
         void addCitizen(Citizen* citizen);
         double getTaxRate();
 
