@@ -127,7 +127,7 @@ add_executable(MementoMasters
         Visitor/BuildingReport.cpp
         Visitor/BuildingReport.h
         Visitor/Visitor.cpp
-        Visitor/Visitor.h)
+        Visitor/Visitor.h
          Visitor/Visitor.cpp
         Visitor/Visitor.h
         Visitor/CitizenReport.cpp
