@@ -1,9 +1,6 @@
 // CrimePunishmentStrategy.h
 // STRATEGY DESIGN PATTERN (Strategy)
 
-// CrimePunishmentStrategy.h
-// STRATEGY DESIGN PATTERN (Strategy)
-
 #ifndef CRIME_PUNISHMENT_STRATEGY_H
 #define CRIME_PUNISHMENT_STRATEGY_H
 
