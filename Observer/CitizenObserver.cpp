@@ -19,10 +19,10 @@ void CitizenObserver::update(const std::string& taxType, double newRate) {
         for(Citizen* citizen : this->citizens) {
             if(citizen){
                 if(taxType == "incomeTax"){
-                   if(newRate > 0.15){
+                   if(newRate > 15){
                        citizen->setMood(new PoorMood());
                        //citizen->setMood("Poor");
-                   }else if(newRate > 0.10){
+                   }else if(newRate > 10){
                         citizen->setMood(new AverageMood());
                         //citizen->setMood("Average");
                    } else{
@@ -31,10 +31,10 @@ void CitizenObserver::update(const std::string& taxType, double newRate) {
                    }
 
                 } else if(taxType == "salesTax"){
-                    if(newRate > 0.10){
+                    if(newRate > 10){
                         citizen->setMood(new PoorMood());
                         // citizen->setMood("Poor");
-                    } else if(newRate > 0.05){
+                    } else if(newRate > 5){
                         citizen->setMood(new AverageMood());
                         //citizen->setMood("Average");
                     } else{
@@ -44,10 +44,10 @@ void CitizenObserver::update(const std::string& taxType, double newRate) {
 
                 } else if(taxType == "propertyTax"){
                     //citizen->setMood(newRate > 0.20 ? "furious" : "neutral"); //satisfied?
-                    if(newRate > 0.20){
+                    if(newRate > 20){
                          citizen->setMood(new PoorMood());
                         //citizen->setMood("Poor");
-                    } else if(newRate > 0.15){
+                    } else if(newRate > 15){
                         citizen->setMood(new AverageMood());
                         //citizen->setMood("Average");
                     } else{
