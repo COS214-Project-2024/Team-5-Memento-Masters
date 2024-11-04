@@ -4,7 +4,7 @@
 #include "Strategy/DeathSentenceStrategy.h"
 #include <stdexcept>
 
-}
+
 Citizen::Citizen(const string &name, int age, const string &jobTitle) //updated
     : name(name), jobTitle(jobTitle), 
       mood(NULL), punishmentStrategy(NULL) {}
