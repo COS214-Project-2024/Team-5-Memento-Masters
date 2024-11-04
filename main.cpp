@@ -6,8 +6,14 @@
 #include "CommandUI/ContinueCommand.h"
 #include "CommandUI/HelpCommand.h"
 #include "CommandUI/ExitCommand.h"
+#include "Citizen.h"
+#include "CitizenMood/ExcellentMood.h"
+#include "CitizenMood/AverageMood.h"
+#include "CitizenMood/PoorMood.h"
 
 #include <iostream>
+#include <vector>
+
 using namespace std;
 
 void gameIntro();
@@ -15,13 +21,13 @@ void makeChanges();
 void continueGame();
 void showHelp();
 void endGame();
+void calculateMood(Citizen* citizen, int jobDemand, int jobCapacity, int housing, int traffic);
 
-void gameIntro(){
-    
+void gameIntro() {
+    // Game introduction logic
 }
 
-int main(int argc, char const *argv[])
-{
+int main(int argc, char const *argv[]) {
     string name = "LoremIpsum";
     
     cout << "Welcome to CityBuilder\n" << "Please enter the name of your city:\n";
@@ -33,8 +39,18 @@ int main(int argc, char const *argv[])
 
     bool gameActive = true;
     
-    //Introduction to the game
+    // Introduction to the game
     gameIntro();
+
+    vector<Citizen*> citizens;
+    citizens.push_back(new Citizen("John Doe", 30, "Engineer"));
+    citizens.push_back(new Citizen("Jane Smith", 25, "Doctor"));
+    citizens.push_back(new Citizen("Alice Johnson", 40, "Teacher"));
+
+    for (Citizen* citizen : citizens) {
+        calculateMood(citizen, 10, 8, 5, 3); 
+        cout << citizen->getName() << "'s mood health: " << citizen->calculateHealth() << endl;
+    }
 
     Menu mainMenu("CityBuilder Main Menu");
 
@@ -46,5 +62,21 @@ int main(int argc, char const *argv[])
 
     mainMenu.execute();
 
+    for (Citizen* citizen : citizens) {
+        delete citizen;
+    }
+
     return 0;
+}
+
+void calculateMood(Citizen* citizen, int jobDemand, int jobCapacity, int housing, int traffic) {
+    if (jobDemand > jobCapacity) {
+        citizen->setMood(new PoorMood());
+    } else if (housing < 5) {
+        citizen->setMood(new AverageMood());
+    } else if (traffic > 5) {
+        citizen->setMood(new AverageMood());
+    } else {
+        citizen->setMood(new ExcellentMood());
+    }
 }
