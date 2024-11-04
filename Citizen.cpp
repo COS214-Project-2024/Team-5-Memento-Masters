@@ -3,12 +3,13 @@
 #include "Strategy/PrisonStrategy.h"
 #include "Strategy/DeathSentenceStrategy.h"
 #include "Complaints/ComplaintRouter.h"
+#include "CitizenMood/AverageMood.h"
 #include <stdexcept>
 
 
 Citizen::Citizen(const string &name, int age, const string &jobTitle) //updated
     : name(name), jobTitle(jobTitle), 
-      mood(NULL), punishmentStrategy(NULL) {}
+      mood(new AverageMood()), punishmentStrategy(NULL) {}
 
 
 void Citizen::setMood(CitizenMood *mood) {
