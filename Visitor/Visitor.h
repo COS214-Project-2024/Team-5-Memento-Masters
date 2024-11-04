@@ -9,6 +9,7 @@ class Visitor
 {
 public:
     Visitor();
+    ///@brief Pure virtual function for subsequent Visitor Sub-classes
      virtual std::string generateReport()=0;
     ~Visitor();
 
