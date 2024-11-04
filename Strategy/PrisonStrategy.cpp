@@ -3,10 +3,6 @@
 
 #include "PrisonStrategy.h"
 
-std::string PrisonStrategy::punish() const {
-    return "Sent to prison.";
-}
-
 std::string PrisonStrategy::punishCrime(const std::string& crime) const {
-    return "For the crime of " + crime + ", sent to prison.";
+    return "Punishment for " + crime + ": 5 years in prison";
 }
