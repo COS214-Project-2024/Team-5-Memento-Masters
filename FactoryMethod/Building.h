@@ -1,4 +1,4 @@
-
+#include "Visitor/BuildingReport.h"
 #include <vector>
 #include <string>
 using namespace std;
@@ -35,6 +35,8 @@ public:
     void accept(Visitor* v);
 
     int getCost();
+
+void accept(BuildingReport* v);
 
     virtual ~Building() {
         // delete buildingState;

@@ -1,26 +1,22 @@
 #include <gtest/gtest.h>
 #include "CitizenMood/ExcellentMood.h"
+#include "Citizen.h"
 
-//
-// Created by USER-PC on 2024/10/31.
-//
 class ExcellentMoodStateUnitTest : public ::testing::Test {
 protected:
     virtual void TearDown() {
-
         delete citizen;
     }
 
     virtual void SetUp() {
         state = new ExcellentMood();
-        citizen = new Citizen("Jane Doe", 21, false, "Detective");
+        citizen = new Citizen("Jane Doe", 21, "Detective");
         citizen->setMood(state);
     }
 
     Citizen* citizen;
     CitizenMood* state;
 };
-
 
 TEST_F(ExcellentMoodStateUnitTest, CitizenMoodExcellentToPoor) {
     EXPECT_EQ(citizen->calculateHealth(), 100);
@@ -29,7 +25,6 @@ TEST_F(ExcellentMoodStateUnitTest, CitizenMoodExcellentToPoor) {
 
     EXPECT_EQ(citizen->calculateHealth(), 10);
 }
-
 
 TEST_F(ExcellentMoodStateUnitTest, CitizenMoodExcellentToAverage) {
     EXPECT_EQ(citizen->calculateHealth(), 100);

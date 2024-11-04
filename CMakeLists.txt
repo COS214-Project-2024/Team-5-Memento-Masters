@@ -115,7 +115,15 @@ add_executable(MementoMasters
         FactoryMethod/TransportBuilding.h
         FactoryMethod/TransportBuildingFactory.h
         FactoryMethod/UtilState.h
-        FactoryMethod/WasteOut.h)
+        FactoryMethod/WasteOut.h
+        Strategy/CommunityServiceStrategy.cpp
+        Strategy/CommunityServiceStrategy.h
+        Strategy/CrimePunishmentStrategy.cpp
+        Strategy/CrimePunishmentStrategy.h
+        Strategy/DeathSentenceStrategy.cpp
+        Strategy/DeathSentenceStrategy.h
+        Strategy/PrisonStrategy.cpp
+        Strategy/PrisonStrategy.h)
 
 add_executable(MementoMasters_tests
         Citizen.cpp
@@ -217,6 +225,14 @@ add_executable(MementoMasters_tests
         FactoryMethod/TransportBuildingFactory.h
         FactoryMethod/UtilState.h
         FactoryMethod/WasteOut.h
+        Strategy/CommunityServiceStrategy.h
+        Strategy/CommunityServiceStrategy.cpp
+        Strategy/CrimePunishmentStrategy.h
+        Strategy/CrimePunishmentStrategy.cpp
+        Strategy/DeathSentenceStrategy.h
+        Strategy/DeathSentenceStrategy.cpp
+        Strategy/PrisonStrategy.h
+        Strategy/PrisonStrategy.cpp
         tests/ExcellentMoodStateUnitTest.cpp
         tests/TaxSystemUnitTest.cpp
         tests/ComplaintsHandlerUnitTest.cpp
