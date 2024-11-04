@@ -3,7 +3,7 @@
 
 #include "CommandUI/MapNode.h"
 #include "Citizen.h"
-#include "CityMemento.h"
+#include "Memento/CityMemento.h"
 #include "Observer/CityObserver.h"
 
 #include <vector>
