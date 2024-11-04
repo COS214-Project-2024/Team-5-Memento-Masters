@@ -1,41 +1,33 @@
+#ifndef COMMANDMANAGER_H
+#define COMMANDMANAGER_H
 
-#include "CommandManager.h"
 #include <iostream>
+#include <vector>
+#include <stack>
+#include "TaxSystem.h"
+#include "AdjustTaxCommand.h"
+#include "Command.h"
+#include "BuildCommand.h"
+#include "BuildingFactory.h"
 
-void CommandManager::addCommand(Command* command) {
-    commandHistory.push_back(command);
-}
+class CommandManager {
+public:
+    // CommandManager();
+    
+    void addCommand(Command* command);
+    
+    void executeCommands();
 
-void CommandManager::executeCommands() {
-    for (Command* command : commandHistory) {
-        command->execute();
-        executedCommands.push(command); // push command onto stack after execution
-    }
-    commandHistory.clear(); // clear queue after execution
-}
+    void undoLastCommand();
 
-void CommandManager::undoLastCommand() {
-    if (!executedCommands.empty()) {
-        Command* lastCommand = executedCommands.top();
-        executedCommands.pop();
-        
-        lastCommand->undo(); 
-        delete lastCommand; // clean up
-        std::cout << "Last command undone.\n";
-    } else {
-        std::cout << "No commands to undo.\n";
-    }
-}
+    ~CommandManager();
 
-CommandManager::~CommandManager() {
-    for (Command* command : commandHistory) {
-        delete command; // ensure all commands deleted
-    }
-    while (!executedCommands.empty()) {
-        delete executedCommands.top(); // clean up executed commands
-        executedCommands.pop();
-    }
-}
 
+    private:
+    std::vector<Command*> commandHistory; // useful when want to batch execute a group of (pending) commands together 
+    std::stack<Command*> executedCommands; // stack for undo functionality. when a command is executed from the commandHistory, it is pushed onto this stack.
+};
+
+#endif // COMMANDMANAGER_H
 
 
