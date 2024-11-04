@@ -1,3 +1,4 @@
+
 #include <vector>
 #include "Building.h"
 #include "../Visitor/BuildingReport.h" // Include the definition of BuildingReport
@@ -31,3 +32,5 @@ void Building::accept(Visitor* v) {
 int Building::getCost() {
     return cost;
 }
+
+

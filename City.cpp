@@ -264,6 +264,33 @@ bool City::updateBudget(double amount){
     return false;
 }
 
+string City::generateReport(){
+    RoadReport *roadReport = new RoadReport();
+    BuildingReport *buildingReport = new BuildingReport();
+    CitizenReport *citizenReport = new CitizenReport();
+
+    for (std::vector<MapNode> &row : map) {   
+    for (MapNode node : row) {           
+        node.getBuilding()->accept(buildingReport);    
+
+       
+        if (Road* road = dynamic_cast<Road*>(node.getBuilding())) {
+            road->accept(roadReport);      
+        }
+    }
+}
+    for (auto citizen : citizens) {
+        citizen->accept(citizenReport);
+    }
+    string str="Road Report:\n";
+    str+=roadReport->generateReport()+"\n";
+    str+="Building Report:\n";
+    str+=buildingReport->generateReport()+"\n";
+    str+="Citizen Report:\n";
+    str+=citizenReport->generateReport()+"\n";
+    return str;
+}
+
 // double City::getTaxRate(){
 //     return this->taxRate;
 // }   

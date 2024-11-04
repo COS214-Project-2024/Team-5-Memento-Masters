@@ -128,6 +128,15 @@ add_executable(MementoMasters
         Visitor/BuildingReport.h
         Visitor/Visitor.cpp
         Visitor/Visitor.h)
+         Visitor/Visitor.cpp
+        Visitor/Visitor.h
+        Visitor/CitizenReport.cpp
+        Visitor/CitizenReport.h
+        Visitor/RoadReport.cpp
+        Visitor/RoadReport.h
+        Visitor/BuildingReport.cpp 
+        Visitor/BuildingReport.h
+        )
 
 add_executable(MementoMasters_tests
         Citizen.cpp

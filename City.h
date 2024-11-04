@@ -82,8 +82,10 @@ class City {
         string checkCoord(string coord, bool forRemoval = false);
         void printStats();
         bool updateBudget(double amount);
-
+  string generateReport();
         ~City();
 
 };
-#endif //CITY_H
+
+
+

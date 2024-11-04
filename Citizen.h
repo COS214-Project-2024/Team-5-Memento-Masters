@@ -5,10 +5,13 @@
 #include <string>
 #include <vector>
 #include "CitizenMood/CitizenMood.h"
+
 #include "Strategy/CrimePunishmentStrategy.h"
 #include "Strategy/CommunityServiceStrategy.h"
 #include "Strategy/PrisonStrategy.h"
 #include "Strategy/DeathSentenceStrategy.h"
+#include "Visitor/BuildingReport.h"
+
 
 using namespace std;
 
@@ -48,7 +51,6 @@ public:
 
     // Complaint handling (Chain of Responsibility)
     void makeComplaint(const string& complaint);
-
     // Crime and punishment (Strategy Pattern)
     bool hasCriminalRecord() const;
     void setPunishmentStrategy(CrimePunishmentStrategy* strategy);
@@ -60,6 +62,11 @@ public:
     // void setPunishmentStrategy(unique_ptr<CrimePunishmentStrategy> newStrategy);
     // string receivePunishment() const;
     // string receivePunishmentForCrime(const string& crime) const;
+    //todo for strategy
+    void punish(string crime);
+    void accept(CitizenReport *v);
+};
+
 
 
 };
