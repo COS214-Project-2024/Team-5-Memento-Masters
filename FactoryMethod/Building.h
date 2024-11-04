@@ -11,7 +11,7 @@ protected:
 public:
     virtual ~Building() = default;
     virtual void construct() = 0;  // Pure virtual method to construct the building
-    
+    void accept(BuildingReport *v);
     std::string getBuildingType() const {
         return buildingType;
     }
