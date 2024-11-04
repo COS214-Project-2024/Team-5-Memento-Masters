@@ -1,15 +1,9 @@
-//STRATEGY DESIGN PATTERN
-//DeathSentenceStrategy.cpp
+// STRATEGY DESIGN PATTERN (Concrete Strategy)
+// DeathSentenceStrategy.cpp
 
-#ifndef DEATH_SENTENCE_STRATEGY_H
-#define DEATH_SENTENCE_STRATEGY_H
+#include "DeathSentenceStrategy.h"
 
-#include "CrimePunishmentStrategy.h"
+std::string DeathSentenceStrategy::punishCrime(const std::string& crime) const {
+    return "Punishment for " + crime + ": Death sentence";
+}
 
-class DeathSentenceStrategy : public CrimePunishmentStrategy {
-public:
-    std::string punish() const;
-    std::string punishCrime(const std::string& crime) const;
-};
-
-#endif // DEATH_SENTENCE_STRATEGY_H

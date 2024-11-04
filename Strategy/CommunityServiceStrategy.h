@@ -7,8 +7,7 @@
 
 class CommunityServiceStrategy : public CrimePunishmentStrategy {
 public:
-    std::string punish() const override;
-    std::string punishCrime(const std::string& crime) const; 
+    std::string punishCrime(const std::string& crime) const override;
 };
 
 #endif // COMMUNITY_SERVICE_STRATEGY_H
