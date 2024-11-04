@@ -20,6 +20,40 @@ City::City() : incomeTaxRate(0.0), salesTaxRate(0.0), propertyTaxRate(0.0) {
     educationIndex = 0;
 }
 
+int City::currentYear = 2024;  // Initialize the static year counter (memento)
+
+CityMemento* City::saveToMemento() {  //for memento
+    return new CityMemento(
+        incomeTaxRate, salesTaxRate, propertyTaxRate,
+        population, name, budget, crimeRate, housingCapacity, housingDemand,
+        powerCapacity, powerDemand, jobDemand, jobCapacity, trafficIndex,
+        entertainmentIndex, healthcareIndex, educationIndex, currentYear
+    );
+}
+
+void City::restoreFromMemento(CityMemento* memento) {  //for memento
+    // map = memento->map;
+    // citizens = memento->citizens;
+    incomeTaxRate = memento->incomeTaxRate;
+    salesTaxRate = memento->salesTaxRate;
+    propertyTaxRate = memento->propertyTaxRate;
+    population = memento->population;
+    name = memento->name;
+    budget = memento->budget;
+    crimeRate = memento->crimeRate;
+    housingCapacity = memento->housingCapacity;
+    housingDemand = memento->housingDemand;
+    powerCapacity = memento->powerCapacity;
+    powerDemand = memento->powerDemand;
+    jobDemand = memento->jobDemand;
+    jobCapacity = memento->jobCapacity;
+    trafficIndex = memento->trafficIndex;
+    entertainmentIndex = memento->entertainmentIndex;
+    healthcareIndex = memento->healthcareIndex;
+    educationIndex = memento->educationIndex;
+    currentYear = memento->year;
+}
+
 City::~City(){
     //DECONSTRUCT CITY
 }
