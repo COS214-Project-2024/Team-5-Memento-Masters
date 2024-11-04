@@ -1,7 +1,17 @@
-
 #include "Road.h"
-#include "Visitor/RoadReport.h"
+
+Road::Road()
+{
+
+}
 
 void Road::accept(RoadReport *v){
-v->visit(this);
+    v->visit(this);
+}
+int Road::getEfficiencyValue(){
+    return efficiencyValue;
+}
+Road::~Road()
+{
+
 }
