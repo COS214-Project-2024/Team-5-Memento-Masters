@@ -58,6 +58,7 @@ add_executable(MementoMasters
         CommandUI/MenuCommand.h
         CommandUI/PolicyCommand.h
         CommandUI/ResidentialCommand.h
+        CommandUI/LandmarkCommand.h
         CommandUI/TaxCommand.h
         CommandUI/TransportCommand.h
         FactoryMethod/Airport.cpp
@@ -157,6 +158,7 @@ add_executable(MementoMasters_tests
         CommandUI/MenuCommand.h
         CommandUI/PolicyCommand.h
         CommandUI/ResidentialCommand.h
+        CommandUI/LandmarkCommand.h
         CommandUI/TaxCommand.h
         CommandUI/TransportCommand.h
         FactoryMethod/Airport.cpp
