@@ -4,6 +4,7 @@
 #include "CommandUI/MapNode.h"
 #include "Citizen.h"
 #include "Observer/CityObserver.h"
+#include "Tax/TaxSystem.h"
 
 #include <vector>
 #include <string>
@@ -38,6 +39,7 @@ class City {
         double averageIncome;
         double incomeSpeniture;
         double estimetedBuildValue;
+        TaxSystem* TaxAuth;
 
     protected:
 

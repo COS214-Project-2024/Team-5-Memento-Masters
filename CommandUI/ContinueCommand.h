@@ -43,13 +43,11 @@ public:
             std::uniform_int_distribution<int> dist(1, 90);
             int age = dist(gen);
 
-
-            city->addCitizen(new Citizen("Imigrant", age, "Construction Worker"));
+            city->addCitizen(new Citizen("Imigrant", age, ""));
         }
         
-
-
         //  Current citizens (increment age with visitor?)
+        
 
 
         city->printStats();
