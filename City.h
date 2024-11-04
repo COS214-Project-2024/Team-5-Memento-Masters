@@ -23,11 +23,14 @@ class City {
         vector<vector<MapNode>> map;
         int population;
         string name;
+        double budget;
         double crimeRate;
         int housingCapacity;
         int housingDemand;
         int powerCapacity;
         int powerDemand;
+        int jobDemand;
+        int jobCapacity;
         double trafficIndex;
         double entertainmentIndex;
         double healthcareIndex;
@@ -77,6 +80,7 @@ class City {
         string getBuildingTypeAt(int row, int col) const;
         bool demolishBuilding(const string& coord);
         string checkCoord(string coord, bool forRemoval = false);
+        void printStats();
 
         ~City();
 

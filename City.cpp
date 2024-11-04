@@ -5,6 +5,19 @@ City::City() : incomeTaxRate(0.0), salesTaxRate(0.0), propertyTaxRate(0.0) {
     // this->name = name;
     // this->taxRate = 0.0;
     initMap(5, 5);
+    budget = 1000000;
+    population = 0;
+    crimeRate = 0;
+    housingCapacity = 0;
+    housingDemand = 0;
+    powerCapacity = 0;
+    powerDemand = 0;
+    jobDemand = 0;
+    jobCapacity = 0;
+    trafficIndex = 0;
+    entertainmentIndex = 0;
+    healthcareIndex = 0;
+    educationIndex = 0;
 }
 
 City::~City(){
@@ -126,6 +139,42 @@ void City::constructBuilding(string buildingType, string coord, Building* buildp
     if (check == ""){
         map[rowIndex][colIndex] = MapNode(buildingType, buildptr);
     }
+
+    if (buildingType == "Factory"){
+        jobCapacity = jobCapacity + 10;
+        powerDemand = powerDemand + 5;
+    } else if (buildingType == "Power Plant"){
+        powerCapacity = powerCapacity + 50;
+    } else if (buildingType == "Shop"){
+        jobCapacity = jobCapacity + 4;
+        powerDemand = powerDemand + 1;
+    } else if (buildingType == "Mall"){
+        jobCapacity = jobCapacity + 15;
+        powerDemand = powerDemand + 3;
+    } else if (buildingType == "Office"){
+        jobCapacity = jobCapacity + 12;
+        powerDemand = powerDemand + 3;
+    } else if (buildingType == "House"){
+        housingCapacity = housingCapacity + 4;
+        powerDemand = powerDemand + 1;
+    } else if (buildingType == "Apartment"){
+        housingCapacity = housingCapacity + 20;
+        powerDemand = powerDemand + 2;
+    } else if (buildingType == "Park"){
+        entertainmentIndex = entertainmentIndex + 5;
+    } else if (buildingType == "Monument"){
+        entertainmentIndex = entertainmentIndex + 2;
+    } else if (buildingType == "Road"){
+
+    } else if (buildingType == "Airport"){
+        jobCapacity = jobCapacity + 10;
+        powerDemand = powerDemand + 3;
+    } else if (buildingType == "Train Station"){
+        jobCapacity = jobCapacity + 5;
+        powerDemand = powerDemand + 2;
+    }
+
+    
 }
 
 bool City::hasBuildingAt(int row, int col) const {
@@ -140,6 +189,7 @@ string City::getBuildingTypeAt(int row, int col) const {
 }
 
 bool City::demolishBuilding(const string& coord) {
+
     try {
         char colLetter = coord[0];
         int colIndex = toupper(colLetter) - 'A';
@@ -150,6 +200,42 @@ bool City::demolishBuilding(const string& coord) {
             return false;
         }
 
+
+        string buildingType = getBuildingTypeAt(rowIndex, colIndex);
+        if (buildingType == "Factory"){
+            jobCapacity = jobCapacity - 10;
+            powerDemand = powerDemand - 5;
+        } else if (buildingType == "Power Plant"){
+            powerCapacity = powerCapacity - 50;
+        } else if (buildingType == "Shop"){
+            jobCapacity = jobCapacity - 4;
+            powerDemand = powerDemand - 1;
+        } else if (buildingType == "Mall"){
+            jobCapacity = jobCapacity - 15;
+            powerDemand = powerDemand - 3;
+        } else if (buildingType == "Office"){
+            jobCapacity = jobCapacity - 12;
+            powerDemand = powerDemand - 3;
+        } else if (buildingType == "House"){
+            housingCapacity = housingCapacity - 4;
+            powerDemand = powerDemand - 1;
+        } else if (buildingType == "Apartment"){
+            housingCapacity = housingCapacity - 20;
+            powerDemand = powerDemand - 2;
+        } else if (buildingType == "Park"){
+            entertainmentIndex = entertainmentIndex - 5;
+        } else if (buildingType == "Monument"){
+            entertainmentIndex = entertainmentIndex - 2;
+        } else if (buildingType == "Road"){
+
+        } else if (buildingType == "Airport"){
+            jobCapacity = jobCapacity - 10;
+            powerDemand = powerDemand - 3;
+        } else if (buildingType == "Train Station"){
+            jobCapacity = jobCapacity - 5;
+            powerDemand = powerDemand - 2;
+        }
+
         map[rowIndex][colIndex] = MapNode("Grass");  
         
         return true;
@@ -157,6 +243,15 @@ bool City::demolishBuilding(const string& coord) {
     } catch (const std::exception& e) {
         return false;
     }
+}
+
+void City::printStats(){
+    cout << "\n=== City Stats ===\n";
+    cout << " - Population: " << population << "\n";
+    cout << " - Budget: " << population << "\n";
+    cout << " - Power Demand: " << powerDemand << "/" << powerCapacity << "\n";
+    cout << " - Job Demand: " << jobDemand << "/" << jobCapacity << "\n";
+    cout << " - Housing Demand: " << housingDemand << "/" << housingCapacity << "\n";
 }
 
 // double City::getTaxRate(){
