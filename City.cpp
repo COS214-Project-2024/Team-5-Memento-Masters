@@ -26,6 +26,8 @@ City::~City(){
 
 void City::setIncomeTaxRate(double rate){
     this->incomeTaxRate = rate;
+    //TEST MADE IT TO HERE WHEN SETTING TAX FROM COMMAND
+    //std::cout << "Income Tax being set" << std::endl;
     notify("incomeTax", rate);
 }
 
@@ -67,6 +69,8 @@ std::vector<Citizen*> City::getCitizens(){
 
 void City::addCitizen(Citizen* citizen){
     this->citizens.push_back(citizen);
+
+    this->population++;
 }
 
 void City::initMap(int width, int height){
@@ -253,6 +257,12 @@ void City::printStats(){
     cout << " - Power Demand: " << powerDemand << "/" << powerCapacity << "\n";
     cout << " - Job Demand: " << jobDemand << "/" << jobCapacity << "\n";
     cout << " - Housing Demand: " << housingDemand << "/" << housingCapacity << "\n";
+
+    //PRINT the moods of all citizens
+    cout << "\n=== Citizen Moods ===\n";
+    for(Citizen* citizens : this->citizens){
+        cout << citizens->getName() << "'s mood: " << typeid(*citizens->getMood()).name() << "\n";
+    }
 }
 
 bool City::updateBudget(double amount){
