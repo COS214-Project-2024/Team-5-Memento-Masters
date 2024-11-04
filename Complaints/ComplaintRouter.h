@@ -13,8 +13,20 @@
 class ComplaintRouter {
 private:
     std::unordered_map<std::string, ComplaintHandler*> handlerMap; ///< Map of complaint types to their handlers.
+    static ComplaintRouter* instance; ///< Singleton instance of ComplaintRouter.
+
+    /**
+     * @brief Private constructor to prevent instantiation.
+     */
+    ComplaintRouter() = default;
 
 public:
+    /**
+     * @brief Gets the singleton instance of ComplaintRouter.
+     * @return Pointer to the singleton instance of ComplaintRouter.
+     */
+    static ComplaintRouter* getInstance();
+
     /**
      * @brief Registers a handler for a specific type of complaint.
      * @param complaintType The type of complaint the handler will handle.
