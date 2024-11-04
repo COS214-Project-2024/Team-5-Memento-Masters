@@ -36,6 +36,8 @@ public:
 
     int getCost();
 
+void accept(BuildingReport* v);
+
     virtual ~Building() {
         // delete buildingState;
         // currentOccupants.clear();
