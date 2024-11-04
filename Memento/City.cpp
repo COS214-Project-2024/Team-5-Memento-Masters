@@ -4,7 +4,7 @@ City::City() : incomeTaxRate(0.0), salesTaxRate(0.0), propertyTaxRate(0.0) {
     //INITIALISE CITY
     // this->name = name;
     // this->taxRate = 0.0;
-    // initMap(5, 5);
+    initMap(5, 5);
     budget = 1000000;
     population = 0;
     crimeRate = 0;
@@ -24,12 +24,9 @@ City::~City(){
     //DECONSTRUCT CITY
 }
 
+int City::currentYear = 2024;  // Initialize the static year counter (Memento)
 
-#include "CityMemento.h"
-
-int City::currentYear = 2024;  // Initialize the static year counter
-
-CityMemento* City::saveToMemento() {
+CityMemento* City::saveToMemento() {  // for Memento
     return new CityMemento(
         incomeTaxRate, salesTaxRate, propertyTaxRate,
         population, name, budget, crimeRate, housingCapacity, housingDemand,
@@ -38,7 +35,7 @@ CityMemento* City::saveToMemento() {
     );
 }
 
-void City::restoreFromMemento(CityMemento* memento) {
+void City::restoreFromMemento(CityMemento* memento) { //for Mementp
     // map = memento->map;
     // citizens = memento->citizens;
     incomeTaxRate = memento->incomeTaxRate;
@@ -63,40 +60,40 @@ void City::restoreFromMemento(CityMemento* memento) {
 
 void City::setIncomeTaxRate(double rate){
     this->incomeTaxRate = rate;
-    // notify("incomeTax", rate);
+    notify("incomeTax", rate);
 }
 
 void City::setSalesTaxRate(double rate){
     this->salesTaxRate = rate;
-    // notify("salesTax", rate);
+    notify("salesTax", rate);
 }
 
 void City::setPropertyTaxRate(double rate){
     this->propertyTaxRate = rate;
-    // notify("propertyTax", rate);
+    notify("propertyTax", rate);
 }
 
-// void City::attach(CityObserver* observer){
-//     this->observerList.push_back(observer);
+void City::attach(CityObserver* observer){
+    this->observerList.push_back(observer);
 
-//     //REMOVE?
-//     observer->setSubject(this);
-// }
+    //REMOVE?
+    observer->setSubject(this);
+}
 
-// void City::detach(CityObserver* observer){
-//    auto it = std::find(observerList.begin(), observerList.end(), observer);
-//    if(it != observerList.end()){
-//        observerList.erase(it);
-//    }
-// }
+void City::detach(CityObserver* observer){
+   auto it = std::find(observerList.begin(), observerList.end(), observer);
+   if(it != observerList.end()){
+       observerList.erase(it);
+   }
+}
 
 
-// void City::notify(const std::string& taxType, double newRate){
-//     for(CityObserver* observer : this->observerList) {
-//         // observer->update();
-//         observer->update(taxType, newRate);
-//     }
-// }
+void City::notify(const std::string& taxType, double newRate){
+    for(CityObserver* observer : this->observerList) {
+        // observer->update();
+        observer->update(taxType, newRate);
+    }
+}
 
 std::vector<Citizen*> City::getCitizens(){
     return this->citizens;
@@ -106,181 +103,181 @@ void City::addCitizen(Citizen* citizen){
     this->citizens.push_back(citizen);
 }
 
-// void City::initMap(int width, int height){
-// // Initialize map with default nodes for demonstration
-//     map.resize(height, vector<MapNode>(width, MapNode("Grass")));
-// }
+void City::initMap(int width, int height){
+// Initialize map with default nodes for demonstration
+    map.resize(height, vector<MapNode>(width, MapNode("Grass")));
+}
 
-// void City::printMap() {
-//     // Print the top coordinates
-//     std::cout << "   ";
-//     for (char colLabel = 'A'; colLabel < 'A' + map[0].size(); ++colLabel) {
-//         std::cout << "  " << colLabel << "   ";
-//     }
-//     std::cout << std::endl;
+void City::printMap() {
+    // Print the top coordinates
+    std::cout << "   ";
+    for (char colLabel = 'A'; colLabel < 'A' + map[0].size(); ++colLabel) {
+        std::cout << "  " << colLabel << "   ";
+    }
+    std::cout << std::endl;
 
-//     // Print the map with row coordinates
-//     for (size_t rowIndex = 0; rowIndex < map.size(); ++rowIndex) {
-//         std::cout << "   ";
-//         for (size_t i = 0; i < map[rowIndex].size(); ++i) {
-//             std::cout << "----- ";
-//         }
-//         std::cout << std::endl;
+    // Print the map with row coordinates
+    for (size_t rowIndex = 0; rowIndex < map.size(); ++rowIndex) {
+        std::cout << "   ";
+        for (size_t i = 0; i < map[rowIndex].size(); ++i) {
+            std::cout << "----- ";
+        }
+        std::cout << std::endl;
 
-//         std::cout << std::setw(2) << rowIndex + 1 << " "; // Row index with padding
+        std::cout << std::setw(2) << rowIndex + 1 << " "; // Row index with padding
 
-//         // Print each MapNode in the row
-//         for (const auto& node : map[rowIndex]) {
-//             std::cout << "|" << node.printNode() << "| ";
-//         }
-//         std::cout << std::endl; 
-//     }
-//     std::cout << "   ";
-//     for (size_t i = 0; i < map[0].size(); ++i) {
-//         std::cout << "----- ";
-//     }
-//     std::cout << std::endl;
-// }
+        // Print each MapNode in the row
+        for (const auto& node : map[rowIndex]) {
+            std::cout << "|" << node.printNode() << "| ";
+        }
+        std::cout << std::endl; 
+    }
+    std::cout << "   ";
+    for (size_t i = 0; i < map[0].size(); ++i) {
+        std::cout << "----- ";
+    }
+    std::cout << std::endl;
+}
 
-// string City::checkCoord(string coord, bool forRemoval){
-//     if (coord.length() < 2) {
-//         return "\nInvalid Co-ordinate";
-//     }
+string City::checkCoord(string coord, bool forRemoval){
+    if (coord.length() < 2) {
+        return "\nInvalid Co-ordinate";
+    }
 
-//     char colLetter = coord[0];
-//     int colIndex = toupper(colLetter) - 'A';
+    char colLetter = coord[0];
+    int colIndex = toupper(colLetter) - 'A';
 
-//     int rowIndex = stoi(coord.substr(1)) - 1;
+    int rowIndex = stoi(coord.substr(1)) - 1;
 
-//     if (rowIndex < 0 || rowIndex >= map.size() || colIndex < 0 || colIndex >= map[0].size()) {
-//         return "\n" + coord + " out of bounds";
-//     }
+    if (rowIndex < 0 || rowIndex >= map.size() || colIndex < 0 || colIndex >= map[0].size()) {
+        return "\n" + coord + " out of bounds";
+    }
 
-//     if (forRemoval == false){
-//         if (map[rowIndex][colIndex].getBuilding() != nullptr){
-//             return "Building already exists at " + coord;
-//         }
-//     }
+    if (forRemoval == false){
+        if (map[rowIndex][colIndex].getBuilding() != nullptr){
+            return "Building already exists at " + coord;
+        }
+    }
    
-//     return "";
-// }
+    return "";
+}
 
-// void City::constructBuilding(string buildingType, string coord, Building* buildptr){
-//     string check = checkCoord(coord);
+void City::constructBuilding(string buildingType, string coord, Building* buildptr){
+    string check = checkCoord(coord);
 
-//     char colLetter = coord[0];
-//     int colIndex = toupper(colLetter) - 'A';
+    char colLetter = coord[0];
+    int colIndex = toupper(colLetter) - 'A';
 
-//     int rowIndex = stoi(coord.substr(1)) - 1;
+    int rowIndex = stoi(coord.substr(1)) - 1;
 
-//     if (check == ""){
-//         map[rowIndex][colIndex] = MapNode(buildingType, buildptr);
-//     }
+    if (check == ""){
+        map[rowIndex][colIndex] = MapNode(buildingType, buildptr);
+    }
 
-//     if (buildingType == "Factory"){
-//         jobCapacity = jobCapacity + 10;
-//         powerDemand = powerDemand + 5;
-//     } else if (buildingType == "Power Plant"){
-//         powerCapacity = powerCapacity + 50;
-//     } else if (buildingType == "Shop"){
-//         jobCapacity = jobCapacity + 4;
-//         powerDemand = powerDemand + 1;
-//     } else if (buildingType == "Mall"){
-//         jobCapacity = jobCapacity + 15;
-//         powerDemand = powerDemand + 3;
-//     } else if (buildingType == "Office"){
-//         jobCapacity = jobCapacity + 12;
-//         powerDemand = powerDemand + 3;
-//     } else if (buildingType == "House"){
-//         housingCapacity = housingCapacity + 4;
-//         powerDemand = powerDemand + 1;
-//     } else if (buildingType == "Apartment"){
-//         housingCapacity = housingCapacity + 20;
-//         powerDemand = powerDemand + 2;
-//     } else if (buildingType == "Park"){
-//         entertainmentIndex = entertainmentIndex + 5;
-//     } else if (buildingType == "Monument"){
-//         entertainmentIndex = entertainmentIndex + 2;
-//     } else if (buildingType == "Road"){
+    if (buildingType == "Factory"){
+        jobCapacity = jobCapacity + 10;
+        powerDemand = powerDemand + 5;
+    } else if (buildingType == "Power Plant"){
+        powerCapacity = powerCapacity + 50;
+    } else if (buildingType == "Shop"){
+        jobCapacity = jobCapacity + 4;
+        powerDemand = powerDemand + 1;
+    } else if (buildingType == "Mall"){
+        jobCapacity = jobCapacity + 15;
+        powerDemand = powerDemand + 3;
+    } else if (buildingType == "Office"){
+        jobCapacity = jobCapacity + 12;
+        powerDemand = powerDemand + 3;
+    } else if (buildingType == "House"){
+        housingCapacity = housingCapacity + 4;
+        powerDemand = powerDemand + 1;
+    } else if (buildingType == "Apartment"){
+        housingCapacity = housingCapacity + 20;
+        powerDemand = powerDemand + 2;
+    } else if (buildingType == "Park"){
+        entertainmentIndex = entertainmentIndex + 5;
+    } else if (buildingType == "Monument"){
+        entertainmentIndex = entertainmentIndex + 2;
+    } else if (buildingType == "Road"){
 
-//     } else if (buildingType == "Airport"){
-//         jobCapacity = jobCapacity + 10;
-//         powerDemand = powerDemand + 3;
-//     } else if (buildingType == "Train Station"){
-//         jobCapacity = jobCapacity + 5;
-//         powerDemand = powerDemand + 2;
-//     }
+    } else if (buildingType == "Airport"){
+        jobCapacity = jobCapacity + 10;
+        powerDemand = powerDemand + 3;
+    } else if (buildingType == "Train Station"){
+        jobCapacity = jobCapacity + 5;
+        powerDemand = powerDemand + 2;
+    }
 
     
-// }
+}
 
-// bool City::hasBuildingAt(int row, int col) const {
-//     return map[row][col].getBuilding() != nullptr;
-// }
+bool City::hasBuildingAt(int row, int col) const {
+    return map[row][col].getBuilding() != nullptr;
+}
 
-// string City::getBuildingTypeAt(int row, int col) const {
-//     if (hasBuildingAt(row, col)) {
-//         return map[row][col].getType();
-//     }
-//     return "Empty";
-// }
+string City::getBuildingTypeAt(int row, int col) const {
+    if (hasBuildingAt(row, col)) {
+        return map[row][col].getType();
+    }
+    return "Empty";
+}
 
-// bool City::demolishBuilding(const string& coord) {
+bool City::demolishBuilding(const string& coord) {
 
-//     try {
-//         char colLetter = coord[0];
-//         int colIndex = toupper(colLetter) - 'A';
-//         int rowIndex = stoi(coord.substr(1)) - 1;
+    try {
+        char colLetter = coord[0];
+        int colIndex = toupper(colLetter) - 'A';
+        int rowIndex = stoi(coord.substr(1)) - 1;
 
-//         if (rowIndex < 0 || rowIndex >= map.size() || 
-//             colIndex < 0 || colIndex >= map[0].size()) {
-//             return false;
-//         }
+        if (rowIndex < 0 || rowIndex >= map.size() || 
+            colIndex < 0 || colIndex >= map[0].size()) {
+            return false;
+        }
 
 
-//         string buildingType = getBuildingTypeAt(rowIndex, colIndex);
-//         if (buildingType == "Factory"){
-//             jobCapacity = jobCapacity - 10;
-//             powerDemand = powerDemand - 5;
-//         } else if (buildingType == "Power Plant"){
-//             powerCapacity = powerCapacity - 50;
-//         } else if (buildingType == "Shop"){
-//             jobCapacity = jobCapacity - 4;
-//             powerDemand = powerDemand - 1;
-//         } else if (buildingType == "Mall"){
-//             jobCapacity = jobCapacity - 15;
-//             powerDemand = powerDemand - 3;
-//         } else if (buildingType == "Office"){
-//             jobCapacity = jobCapacity - 12;
-//             powerDemand = powerDemand - 3;
-//         } else if (buildingType == "House"){
-//             housingCapacity = housingCapacity - 4;
-//             powerDemand = powerDemand - 1;
-//         } else if (buildingType == "Apartment"){
-//             housingCapacity = housingCapacity - 20;
-//             powerDemand = powerDemand - 2;
-//         } else if (buildingType == "Park"){
-//             entertainmentIndex = entertainmentIndex - 5;
-//         } else if (buildingType == "Monument"){
-//             entertainmentIndex = entertainmentIndex - 2;
-//         } else if (buildingType == "Road"){
+        string buildingType = getBuildingTypeAt(rowIndex, colIndex);
+        if (buildingType == "Factory"){
+            jobCapacity = jobCapacity - 10;
+            powerDemand = powerDemand - 5;
+        } else if (buildingType == "Power Plant"){
+            powerCapacity = powerCapacity - 50;
+        } else if (buildingType == "Shop"){
+            jobCapacity = jobCapacity - 4;
+            powerDemand = powerDemand - 1;
+        } else if (buildingType == "Mall"){
+            jobCapacity = jobCapacity - 15;
+            powerDemand = powerDemand - 3;
+        } else if (buildingType == "Office"){
+            jobCapacity = jobCapacity - 12;
+            powerDemand = powerDemand - 3;
+        } else if (buildingType == "House"){
+            housingCapacity = housingCapacity - 4;
+            powerDemand = powerDemand - 1;
+        } else if (buildingType == "Apartment"){
+            housingCapacity = housingCapacity - 20;
+            powerDemand = powerDemand - 2;
+        } else if (buildingType == "Park"){
+            entertainmentIndex = entertainmentIndex - 5;
+        } else if (buildingType == "Monument"){
+            entertainmentIndex = entertainmentIndex - 2;
+        } else if (buildingType == "Road"){
 
-//         } else if (buildingType == "Airport"){
-//             jobCapacity = jobCapacity - 10;
-//             powerDemand = powerDemand - 3;
-//         } else if (buildingType == "Train Station"){
-//             jobCapacity = jobCapacity - 5;
-//             powerDemand = powerDemand - 2;
-//         }
+        } else if (buildingType == "Airport"){
+            jobCapacity = jobCapacity - 10;
+            powerDemand = powerDemand - 3;
+        } else if (buildingType == "Train Station"){
+            jobCapacity = jobCapacity - 5;
+            powerDemand = powerDemand - 2;
+        }
 
-//         map[rowIndex][colIndex] = MapNode("Grass");  
+        map[rowIndex][colIndex] = MapNode("Grass");  
         
-//         return true;
+        return true;
 
-//     } catch (const std::exception& e) {
-//         return false;
-//     }
-// }
+    } catch (const std::exception& e) {
+        return false;
+    }
+}
 
 void City::printStats(){
     cout << "\n=== City Stats ===\n";
@@ -299,6 +296,33 @@ bool City::updateBudget(double amount){
         return true;
     } 
     return false;
+}
+
+string City::generateReport(){
+    RoadReport *roadReport = new RoadReport();
+    BuildingReport *buildingReport = new BuildingReport();
+    CitizenReport *citizenReport = new CitizenReport();
+
+    for (std::vector<MapNode> &row : map) {   
+    for (MapNode node : row) {           
+        node.getBuilding()->accept(buildingReport);    
+
+       
+        if (Road* road = dynamic_cast<Road*>(node.getBuilding())) {
+            road->accept(roadReport);      
+        }
+    }
+}
+    for (auto citizen : citizens) {
+        citizen->accept(citizenReport);
+    }
+    string str="Road Report:\n";
+    str+=roadReport->generateReport()+"\n";
+    str+="Building Report:\n";
+    str+=buildingReport->generateReport()+"\n";
+    str+="Citizen Report:\n";
+    str+=citizenReport->generateReport()+"\n";
+    return str;
 }
 
 // double City::getTaxRate(){
