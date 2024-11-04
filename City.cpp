@@ -18,6 +18,9 @@ City::City() : incomeTaxRate(0.0), salesTaxRate(0.0), propertyTaxRate(0.0) {
     entertainmentIndex = 0;
     healthcareIndex = 0;
     educationIndex = 0;
+    averageIncome = 0;
+    incomeSpeniture = 0;
+    estimetedBuildValue = 0;
 }
 
 City::~City(){
@@ -67,6 +70,7 @@ std::vector<Citizen*> City::getCitizens(){
 
 void City::addCitizen(Citizen* citizen){
     this->citizens.push_back(citizen);
+    population++;
 }
 
 void City::initMap(int width, int height){
@@ -256,12 +260,43 @@ void City::printStats(){
 }
 
 bool City::updateBudget(double amount){
-    amount = -amount;
     if (budget + amount >= 0){
         budget = budget + amount;
         return true;
     } 
     return false;
+}
+
+double City::getTaxRate(char type){
+    if(type == 'I'){
+        return incomeTaxRate;
+    } else if(type == 'S'){
+        return salesTaxRate;
+    } if(type == 'P'){
+        return propertyTaxRate;
+    } else {
+        return 0;
+    }
+}
+
+double City::getAverageIncome(){
+    return averageIncome;
+}
+
+double City::getIncomeSpenditure(){
+    return incomeSpeniture;
+}
+
+double City::getEstimatedBuildValue(){
+    return estimetedBuildValue;
+}
+
+void City::updateEstimatedBuildValue(double amount){
+    estimetedBuildValue = estimetedBuildValue + amount;
+}
+
+int City::getJobAvailability(){
+    return jobCapacity - jobDemand;
 }
 
 // double City::getTaxRate(){

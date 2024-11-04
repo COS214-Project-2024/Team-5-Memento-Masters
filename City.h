@@ -35,6 +35,10 @@ class City {
         double entertainmentIndex;
         double healthcareIndex;
         double educationIndex;
+        double averageIncome;
+        double incomeSpeniture;
+        double estimetedBuildValue;
+
     protected:
 
     public:
@@ -72,7 +76,7 @@ class City {
 
         vector<Citizen*> getCitizens();
         void addCitizen(Citizen* citizen);
-        double getTaxRate();
+        double getTaxRate(char type);
 
         void constructBuilding(string buildingType, string coord, Building* buildptr);
         void printMap();
@@ -82,7 +86,12 @@ class City {
         string checkCoord(string coord, bool forRemoval = false);
         void printStats();
         bool updateBudget(double amount);
-
+        double getAverageIncome();
+        double getIncomeSpenditure();
+        double getEstimatedBuildValue();
+        void updateEstimatedBuildValue(double amount);
+        int getJobAvailability();
+        
         ~City();
 
 };
