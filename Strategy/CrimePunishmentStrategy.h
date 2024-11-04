@@ -1,6 +1,9 @@
 // CrimePunishmentStrategy.h
 // STRATEGY DESIGN PATTERN (Strategy)
 
+// CrimePunishmentStrategy.h
+// STRATEGY DESIGN PATTERN (Strategy)
+
 #ifndef CRIME_PUNISHMENT_STRATEGY_H
 #define CRIME_PUNISHMENT_STRATEGY_H
 
@@ -9,11 +12,19 @@
 class CrimePunishmentStrategy {
 public:
     virtual ~CrimePunishmentStrategy();
-    virtual std::string punish() const = 0;
     virtual std::string punishCrime(const std::string& crime) const = 0; 
 };
 
 #endif // CRIME_PUNISHMENT_STRATEGY_H
+
+
+
+
+
+
+
+
+
 
 
 
