@@ -3,6 +3,7 @@
 using namespace std;
 
 #include "Building.h"
+#include "../Visitor/BuildingReport.h" 
 
 void Building::removeCitizen(Citizen* citizen) {
 	throw "Not yet implemented";
@@ -20,8 +21,8 @@ void Building::buy(Citizen* newOwner) {
 	throw "Not yet implemented";
 }
 
-void Building::accept(BuildingReport* v) {
-v->visit(this);
+void Building::accept(BuildingReport* v) {  
+    v->visit(this);
 }
 
 void Building::accept(Visitor* v) {

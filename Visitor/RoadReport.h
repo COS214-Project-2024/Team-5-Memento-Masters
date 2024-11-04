@@ -3,7 +3,7 @@
 #include "Visitor.h"
 #include "FactoryMethod/Road.h"
 #include <string>
-class Road;
+#include "../FactoryMethod/Road.h"
 class RoadReport : public Visitor
 {
 public:

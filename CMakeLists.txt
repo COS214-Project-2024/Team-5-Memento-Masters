@@ -123,7 +123,13 @@ add_executable(MementoMasters
         Strategy/DeathSentenceStrategy.cpp
         Strategy/DeathSentenceStrategy.h
         Strategy/PrisonStrategy.cpp
-        Strategy/PrisonStrategy.h)
+        Strategy/PrisonStrategy.h
+        Visitor/BuildingReport.cpp
+        Visitor/CitizenReport.cpp
+        Visitor/Visitor.cpp
+        Visitor/BuildingReport.h
+        Visitor/CitizenReport.h
+        Visitor/Visitor.h)
 
 add_executable(MementoMasters_tests
         Citizen.cpp
@@ -233,6 +239,12 @@ add_executable(MementoMasters_tests
         Strategy/DeathSentenceStrategy.cpp
         Strategy/PrisonStrategy.h
         Strategy/PrisonStrategy.cpp
+        Visitor/BuildingReport.cpp
+        Visitor/CitizenReport.cpp
+        Visitor/Visitor.cpp
+        Visitor/BuildingReport.h
+        Visitor/CitizenReport.h
+        Visitor/Visitor.h
         tests/ExcellentMoodStateUnitTest.cpp
         tests/TaxSystemUnitTest.cpp
         tests/ComplaintsHandlerUnitTest.cpp
