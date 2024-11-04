@@ -125,10 +125,8 @@ add_executable(MementoMasters
         Strategy/PrisonStrategy.cpp
         Strategy/PrisonStrategy.h
         Visitor/BuildingReport.cpp
-        Visitor/CitizenReport.cpp
-        Visitor/Visitor.cpp
         Visitor/BuildingReport.h
-        Visitor/CitizenReport.h
+        Visitor/Visitor.cpp
         Visitor/Visitor.h)
 
 add_executable(MementoMasters_tests
@@ -240,10 +238,8 @@ add_executable(MementoMasters_tests
         Strategy/PrisonStrategy.h
         Strategy/PrisonStrategy.cpp
         Visitor/BuildingReport.cpp
-        Visitor/CitizenReport.cpp
-        Visitor/Visitor.cpp
         Visitor/BuildingReport.h
-        Visitor/CitizenReport.h
+        Visitor/Visitor.cpp
         Visitor/Visitor.h
         tests/ExcellentMoodStateUnitTest.cpp
         tests/TaxSystemUnitTest.cpp

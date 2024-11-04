@@ -1,11 +1,12 @@
 #include "Visitor.h"
+#include <iostream>
 
-Visitor::Visitor()
-{
-
+Visitor::Visitor() {
+    // Dummy implementation
+    std::cout << "Visitor constructor called." << std::endl;
 }
 
-Visitor::~Visitor()
-{
-
+Visitor::~Visitor() {
+    // Dummy implementation
+    std::cout << "Visitor destructor called." << std::endl;
 }

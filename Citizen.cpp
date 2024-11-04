@@ -2,6 +2,7 @@
 #include "Strategy/CommunityServiceStrategy.h"
 #include "Strategy/PrisonStrategy.h"
 #include "Strategy/DeathSentenceStrategy.h"
+#include "Complaints/ComplaintRouter.h"
 #include <stdexcept>
 
 
@@ -60,12 +61,16 @@ int Citizen::calculateHealth() {
     return this->mood->getHealth();
 }
 
-
-// Complaint handling (Chain of Responsibility)
-void Citizen::makeComplaint(string complaint) {
-    // I need to still integrate the Chain of Responsibility pattern - (Michael)
+// COMPLAINT CHAIN INTEGRATION
+void Citizen::makeComplaint(const string& complaint) {
+    ComplaintRouter* router = ComplaintRouter::getInstance();
+    router->handleComplaint(complaint);
+    if (complaint == "noise" || complaint == "transport" || complaint == "utilities") {
+        this->mood->isPoor(this);
+    } else {
+        this->mood->isAverage(this);
+    }
 }
-
 
 // Crime and punishment (Strategy Pattern)
 void Citizen::setPunishmentStrategy(CrimePunishmentStrategy* strategy) { //new

@@ -47,7 +47,7 @@ public:
     int calculateHealth();
 
     // Complaint handling (Chain of Responsibility)
-    void makeComplaint(string complaint);
+    void makeComplaint(const string& complaint);
 
     // Crime and punishment (Strategy Pattern)
     bool hasCriminalRecord() const;
