@@ -64,6 +64,11 @@ public:
         
         newBuilding = factory->createBuilding(buildingType);
 
+        if (!city->updateBudget(newBuilding->getCost())) {
+            cout << "\n" << indentation << "Insufficient funds!\n";
+            return;
+        }
+
         if (newBuilding != nullptr) {
             // Add the building to the city at the specified coordinates
             city->constructBuilding(buildingType, coord, newBuilding);

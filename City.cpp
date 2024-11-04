@@ -248,10 +248,20 @@ bool City::demolishBuilding(const string& coord) {
 void City::printStats(){
     cout << "\n=== City Stats ===\n";
     cout << " - Population: " << population << "\n";
-    cout << " - Budget: " << population << "\n";
+    std::cout << std::fixed << std::setprecision(0);
+    cout << " - Budget: " << budget << "\n";
     cout << " - Power Demand: " << powerDemand << "/" << powerCapacity << "\n";
     cout << " - Job Demand: " << jobDemand << "/" << jobCapacity << "\n";
     cout << " - Housing Demand: " << housingDemand << "/" << housingCapacity << "\n";
+}
+
+bool City::updateBudget(double amount){
+    amount = -amount;
+    if (budget + amount >= 0){
+        budget = budget + amount;
+        return true;
+    } 
+    return false;
 }
 
 // double City::getTaxRate(){

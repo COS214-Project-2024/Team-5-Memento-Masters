@@ -81,6 +81,7 @@ class City {
         bool demolishBuilding(const string& coord);
         string checkCoord(string coord, bool forRemoval = false);
         void printStats();
+        bool updateBudget(double amount);
 
         ~City();
 
