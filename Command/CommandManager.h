@@ -1,39 +1,41 @@
-#ifndef COMMANDMANAGER_H
-#define COMMANDMANAGER_H
 
-#include <vector>
-#include "Command.h"
+#include "CommandManager.h"
+#include <iostream>
 
-class CommandManager
-{
-public:
-    void executeCommand(Command *command)
-    {
+void CommandManager::addCommand(Command* command) {
+    commandHistory.push_back(command);
+}
+
+void CommandManager::executeCommands() {
+    for (Command* command : commandHistory) {
         command->execute();
-        commandHistory.push_back(command);
+        executedCommands.push(command); // push command onto stack after execution
     }
+    commandHistory.clear(); // clear queue after execution
+}
 
-    void undoLastCommand()
-    {
-        if (!commandHistory.empty())
-        {
-            Command *lastCommand = commandHistory.back();
-            lastCommand->undo();
-            commandHistory.pop_back();
-            delete lastCommand;
-        }
+void CommandManager::undoLastCommand() {
+    if (!executedCommands.empty()) {
+        Command* lastCommand = executedCommands.top();
+        executedCommands.pop();
+        
+        lastCommand->undo(); 
+        delete lastCommand; // clean up
+        std::cout << "Last command undone.\n";
+    } else {
+        std::cout << "No commands to undo.\n";
     }
+}
 
-    ~CommandManager()
-    {
-        for (Command *command : commandHistory)
-        {
-            delete command;
-        }
+CommandManager::~CommandManager() {
+    for (Command* command : commandHistory) {
+        delete command; // ensure all commands deleted
     }
+    while (!executedCommands.empty()) {
+        delete executedCommands.top(); // clean up executed commands
+        executedCommands.pop();
+    }
+}
 
-private:
-    std::vector<Command *> commandHistory;
-};
 
-#endif // COMMANDMANAGER_H
+
