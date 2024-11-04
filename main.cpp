@@ -10,14 +10,6 @@
 #include <iostream>
 using namespace std;
 
-// THIS IS BASICALLY OUR PRODUCTION MAIN...
-// ...AND WE'RE GOING TO USE IT TO TEST OUR CODE
-// ...AND MAKE SURE IT WORKS AS EXPECTED
-
-// THIS IS WHERE WE ARE HAPPY WITH OUR CODE AND TESTING WE CAN ADD IT TO OUR PRODUCTION CODE
-
-
-// Function prototypes
 void gameIntro();
 void makeChanges();
 void continueGame();
@@ -30,15 +22,6 @@ void gameIntro(){
 
 int main(int argc, char const *argv[])
 {
-    // Initialize your components here
-    //
-    //
-    //
-
-    // Add your production code here once you are happy with the testing
-    //
-    //
-    //
     string name = "LoremIpsum";
     
     cout << "Welcome to CityBuilder\n" << "Please enter the name of your city:\n";
