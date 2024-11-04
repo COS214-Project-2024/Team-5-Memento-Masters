@@ -42,7 +42,16 @@ add_executable(MementoMasters
         Observer/CityObserver.cpp
         Observer/CityObserver.h
         Observer/CitizenObserver.cpp
-        Observer/CitizenObserver.h)
+        Observer/CitizenObserver.h
+         Visitor/Visitor.cpp
+        Visitor/Visitor.h
+        Visitor/CitizenReport.cpp
+        Visitor/CitizenReport.h
+        Visitor/RoadReport.cpp
+        Visitor/RoadReport.h
+        Visitor/BuildingReport.cpp 
+        Visitor/BuildingReport.h
+        )
 
 add_executable(MementoMasters_tests
         Citizen.cpp
