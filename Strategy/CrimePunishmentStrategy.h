@@ -9,11 +9,25 @@
 class CrimePunishmentStrategy {
 public:
     virtual ~CrimePunishmentStrategy();
-    virtual std::string punish() const = 0;
     virtual std::string punishCrime(const std::string& crime) const = 0; 
 };
 
 #endif // CRIME_PUNISHMENT_STRATEGY_H
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

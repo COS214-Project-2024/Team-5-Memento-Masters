@@ -1,10 +1,17 @@
 #ifndef CITIZEN_H
 #define CITIZEN_H
 
-#include "string"
-#include "vector"
+#include <memory>
+#include <string>
+#include <vector>
 #include "CitizenMood/CitizenMood.h"
+
+#include "Strategy/CrimePunishmentStrategy.h"
+#include "Strategy/CommunityServiceStrategy.h"
+#include "Strategy/PrisonStrategy.h"
+#include "Strategy/DeathSentenceStrategy.h"
 #include "Visitor/BuildingReport.h"
+
 
 using namespace std;
 
@@ -13,47 +20,48 @@ class CitizenMood;
 class Citizen {
 private:
     CitizenMood* mood;
-
     string name;
     int age;
-    bool hasCriminalRecord;
-
     string jobTitle;
     vector<string> crimes;
+    CrimePunishmentStrategy* punishmentStrategy; //new
+    // unique_ptr<CrimePunishmentStrategy> strategy;
+    //bool hasCriminalRecord;  //OLD attribute (revert back only if issues with update)
+
 public:
-    // todo constructor
-    Citizen(const string &name, int age, bool hasCriminalRecord, const string &jobTitle);
+    // Constructor
+    Citizen(const string &name, int age, const string &jobTitle);
 
+    // Mood-related methods
     void setMood(CitizenMood* mood);
+    CitizenMood* getMood() const;
 
-    CitizenMood *getMood() const;
-
-    const string &getName() const;
-
+    // Basic attributes methods
+    const string& getName() const;
     void setName(const string &name);
-
     int getAge() const;
-
     void setAge(int age);
-
-    bool isHasCriminalRecord() const;
-
-    void setHasCriminalRecord(bool hasCriminalRecord);
-
-    const string &getJobTitle() const;
-
+    const string& getJobTitle() const;
     void setJobTitle(const string &jobTitle);
-
-    const vector<string> &getCrimes() const;
-
+    const vector<string>& getCrimes() const;
     void setCrimes(const vector<string> &crimes);
 
-
+    // Health calculation
     int calculateHealth();
 
-    //todo for chain
-    void makeComplaint(string complaint);
+    // Complaint handling (Chain of Responsibility)
+    void makeComplaint(const string& complaint);
+    // Crime and punishment (Strategy Pattern)
+    bool hasCriminalRecord() const;
+    void setPunishmentStrategy(CrimePunishmentStrategy* strategy);
+    string punish(const string& crime);
+    void addCrime(const string& crime);
 
+    //OLD CRIMEPUNISHMENTSTRATEGY METHODS (revert back if problem)
+    // void commitCrime(const string& crime);
+    // void setPunishmentStrategy(unique_ptr<CrimePunishmentStrategy> newStrategy);
+    // string receivePunishment() const;
+    // string receivePunishmentForCrime(const string& crime) const;
     //todo for strategy
     void punish(string crime);
     void accept(CitizenReport *v);
@@ -61,4 +69,6 @@ public:
 
 
 
-#endif //CITIZEN_H
+};
+
+#endif // CITIZEN_H

@@ -13,6 +13,7 @@ public:
     std::string generateReport() override;
     /// @brief Uses the passed in parameter to calculate the total sum of Efficiency
     /// @param road Used to sum total efficiency within the City
+
     void visit(Road *road);
     ~RoadReport();
 
@@ -20,4 +21,6 @@ private:
 int efficiencySum;
 };
 
+
 #endif
+

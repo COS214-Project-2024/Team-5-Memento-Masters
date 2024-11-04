@@ -5,19 +5,21 @@
 #define ADJUSTTAXCOMMAND_H
 
 #include "Command.h"
-#include "City.h"
+#include "TaxSystem.h"
 
 class AdjustTaxCommand : public Command
 {
-private:
-    City *city;
-    float taxRate;
-    float previousTaxRate;
-
 public:
-    AdjustTaxCommand(City *city, float taxRate);
+    AdjustTaxCommand(TaxSystem *taxSys, float taxRate);
     void execute();
     void undo();
+
+private:
+    TaxSystem* taxSystem;   // receiver
+    float taxRate;
+    float previousTaxRate;
 };
 
 #endif // ADJUSTTAXCOMMAND_H
+
+

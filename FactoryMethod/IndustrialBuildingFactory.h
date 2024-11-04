@@ -1,15 +1,33 @@
+
+#include <string>
+#include <vector>
+using namespace std;
+
 #ifndef INDUSTRIALBUILDINGFACTORY_H
 #define INDUSTRIALBUILDINGFACTORY_H
 
 #include "BuildingFactory.h"
-#include "IndustrialBuilding.h"
+#include "Factory.h"
+#include "PowerPlant.h"
 
-// Factory to create industrial buildings
-class IndustrialBuildingFactory : public BuildingFactory {
-public:
-    Building* createBuilding() override {
-        return new IndustrialBuilding();
+class IndustrialBuildingFactory: public BuildingFactory
+{
+private: 
+    vector<string> validTypes;
+
+public: 
+    IndustrialBuildingFactory() {
+        validTypes = {"Factory", "PowerPlant"};
     }
+
+    Building* createBuilding(string type) override {
+        if (type == "Factory") return new Factory();
+        if (type == "PowerPlant") return new PowerPlant();
+        return nullptr;
+    }
+
+    
+    ~IndustrialBuildingFactory() override = default;
 };
 
-#endif // INDUSTRIALBUILDINGFACTORY_H
+#endif//INDUSTRIALBUILDINGFACTORY_H

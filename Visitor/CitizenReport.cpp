@@ -14,14 +14,11 @@ std::string CitizenReport::generateReport(){
 void CitizenReport::visit(Citizen *citizen)
 {
     total++;
-    if (citizen->getMood() == "Excellent")
-    {
-        moodSum += 100;
-    }
-    else if (citizen->getMood() == "Average")
-    {
-        moodSum += 50;
-    }
+   if (dynamic_cast<ExcellentMood*>(citizen->getMood())) {
+    moodSum += 100;
+} else if (dynamic_cast<AverageMood*>(citizen->getMood())) {
+    moodSum += 50;
+}
     healthSum += citizen->calculateHealth();
 }
 CitizenReport::~CitizenReport()

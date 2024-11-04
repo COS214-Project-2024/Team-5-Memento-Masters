@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.16.3)
 project(MementoMasters)
 
 set(CMAKE_CXX_STANDARD 14)
+# Add debug flags
+set(CMAKE_BUILD_TYPE Debug)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -18,7 +20,6 @@ add_executable(MementoMasters
         Citizen.cpp
         Citizen.h
         City.cpp
-        City.h
         CitizenMood/CitizenMood.cpp
         CitizenMood/CitizenMood.h
         CitizenMood/ExcellentMood.cpp
@@ -35,6 +36,8 @@ add_executable(MementoMasters
         Complaints/TransportDepartment.h
         Complaints/UtilitiesDepartment.cpp
         Complaints/UtilitiesDepartment.h
+        Complaints/Mayor.cpp
+        Complaints/Mayor.h
         Tax/TaxDepartment.cpp
         Tax/TaxDepartment.h
         Tax/TaxSystem.cpp
@@ -43,6 +46,88 @@ add_executable(MementoMasters
         Observer/CityObserver.h
         Observer/CitizenObserver.cpp
         Observer/CitizenObserver.h
+        CommandUI/MapNode.cpp
+        CommandUI/MenuCommand.cpp
+        CommandUI/BuildCommand.h
+        CommandUI/ChangePolicyCommand.h
+        CommandUI/CommercialCommand.h
+        CommandUI/ContinueCommand.h
+        CommandUI/ExitCommand.h
+        CommandUI/HelpCommand.h
+        CommandUI/IndustrialCommand.h
+        CommandUI/Menu.h
+        CommandUI/MenuCommand.h
+        CommandUI/PolicyCommand.h
+        CommandUI/ResidentialCommand.h
+        CommandUI/LandmarkCommand.h
+        CommandUI/TaxCommand.h
+        CommandUI/TransportCommand.h
+        FactoryMethod/Airport.cpp
+        FactoryMethod/Apartment.cpp
+        FactoryMethod/Building.cpp
+        FactoryMethod/BuildingFactory.cpp
+        FactoryMethod/CommercialBuilding.cpp
+        FactoryMethod/Construction.cpp
+        FactoryMethod/Factory.cpp
+        FactoryMethod/Functional.cpp
+        FactoryMethod/House.cpp
+        FactoryMethod/IndustrialBuilding.cpp
+        FactoryMethod/IndustrialBuildingFactory.cpp
+        FactoryMethod/LandmarkBuilding.cpp
+        FactoryMethod/LandmarkBuildingFactory.cpp
+        FactoryMethod/Mall.cpp
+        FactoryMethod/Monument.cpp
+        FactoryMethod/Office.cpp
+        FactoryMethod/Park.cpp
+        FactoryMethod/PowerPlant.cpp
+        FactoryMethod/PWOut.cpp
+        FactoryMethod/ResidentialBuilding.cpp
+        FactoryMethod/Road.cpp
+        FactoryMethod/Shop.cpp
+        FactoryMethod/TrainStation.cpp
+        FactoryMethod/TransportBuilding.cpp
+        FactoryMethod/TransportBuildingFactory.cpp
+        FactoryMethod/UtilState.cpp
+        FactoryMethod/WasteOut.cpp
+        FactoryMethod/Airport.h
+        FactoryMethod/Apartment.h
+        FactoryMethod/Building.h
+        FactoryMethod/BuildingFactory.h
+        FactoryMethod/CommercialBuilding.h
+        FactoryMethod/Construction.h
+        FactoryMethod/Factory.h
+        FactoryMethod/Functional.h
+        FactoryMethod/House.h
+        FactoryMethod/IndustrialBuilding.h
+        FactoryMethod/IndustrialBuildingFactory.h
+        FactoryMethod/LandmarkBuilding.h
+        FactoryMethod/LandmarkBuildingFactory.h
+        FactoryMethod/Mall.h
+        FactoryMethod/Monument.h
+        FactoryMethod/Office.h
+        FactoryMethod/Park.h
+        FactoryMethod/PowerPlant.h
+        FactoryMethod/PWOut.h
+        FactoryMethod/ResidentialBuilding.h
+        FactoryMethod/Road.h
+        FactoryMethod/Shop.h
+        FactoryMethod/TrainStation.h
+        FactoryMethod/TransportBuilding.h
+        FactoryMethod/TransportBuildingFactory.h
+        FactoryMethod/UtilState.h
+        FactoryMethod/WasteOut.h
+        Strategy/CommunityServiceStrategy.cpp
+        Strategy/CommunityServiceStrategy.h
+        Strategy/CrimePunishmentStrategy.cpp
+        Strategy/CrimePunishmentStrategy.h
+        Strategy/DeathSentenceStrategy.cpp
+        Strategy/DeathSentenceStrategy.h
+        Strategy/PrisonStrategy.cpp
+        Strategy/PrisonStrategy.h
+        Visitor/BuildingReport.cpp
+        Visitor/BuildingReport.h
+        Visitor/Visitor.cpp
+        Visitor/Visitor.h)
          Visitor/Visitor.cpp
         Visitor/Visitor.h
         Visitor/CitizenReport.cpp
@@ -57,7 +142,6 @@ add_executable(MementoMasters_tests
         Citizen.cpp
         Citizen.h
         City.cpp 
-        City.h
         CitizenMood/CitizenMood.cpp
         CitizenMood/CitizenMood.h
         CitizenMood/ExcellentMood.cpp
@@ -74,6 +158,8 @@ add_executable(MementoMasters_tests
         Complaints/TransportDepartment.h
         Complaints/UtilitiesDepartment.cpp
         Complaints/UtilitiesDepartment.h
+        Complaints/Mayor.cpp
+        Complaints/Mayor.h
         Tax/TaxDepartment.cpp
         Tax/TaxDepartment.h
         Tax/TaxSystem.cpp
@@ -82,9 +168,93 @@ add_executable(MementoMasters_tests
         Observer/CityObserver.h
         Observer/CitizenObserver.cpp
         Observer/CitizenObserver.h
+        CommandUI/MapNode.cpp
+        CommandUI/MenuCommand.cpp
+        CommandUI/BuildCommand.h
+        CommandUI/ChangePolicyCommand.h
+        CommandUI/CommercialCommand.h
+        CommandUI/ContinueCommand.h
+        CommandUI/ExitCommand.h
+        CommandUI/HelpCommand.h
+        CommandUI/IndustrialCommand.h
+        CommandUI/Menu.h
+        CommandUI/MenuCommand.h
+        CommandUI/PolicyCommand.h
+        CommandUI/ResidentialCommand.h
+        CommandUI/LandmarkCommand.h
+        CommandUI/TaxCommand.h
+        CommandUI/TransportCommand.h
+        FactoryMethod/Airport.cpp
+        FactoryMethod/Apartment.cpp
+        FactoryMethod/Building.cpp
+        FactoryMethod/BuildingFactory.cpp
+        FactoryMethod/CommercialBuilding.cpp
+        FactoryMethod/Construction.cpp
+        FactoryMethod/Factory.cpp
+        FactoryMethod/Functional.cpp
+        FactoryMethod/House.cpp
+        FactoryMethod/IndustrialBuilding.cpp
+        FactoryMethod/IndustrialBuildingFactory.cpp
+        FactoryMethod/LandmarkBuilding.cpp
+        FactoryMethod/LandmarkBuildingFactory.cpp
+        FactoryMethod/Mall.cpp
+        FactoryMethod/Monument.cpp
+        FactoryMethod/Office.cpp
+        FactoryMethod/Park.cpp
+        FactoryMethod/PowerPlant.cpp
+        FactoryMethod/PWOut.cpp
+        FactoryMethod/ResidentialBuilding.cpp
+        FactoryMethod/Road.cpp
+        FactoryMethod/Shop.cpp
+        FactoryMethod/TrainStation.cpp
+        FactoryMethod/TransportBuilding.cpp
+        FactoryMethod/TransportBuildingFactory.cpp
+        FactoryMethod/UtilState.cpp
+        FactoryMethod/WasteOut.cpp
+        FactoryMethod/Airport.h
+        FactoryMethod/Apartment.h
+        FactoryMethod/Building.h
+        FactoryMethod/BuildingFactory.h
+        FactoryMethod/CommercialBuilding.h
+        FactoryMethod/Construction.h
+        FactoryMethod/Factory.h
+        FactoryMethod/Functional.h
+        FactoryMethod/House.h
+        FactoryMethod/IndustrialBuilding.h
+        FactoryMethod/IndustrialBuildingFactory.h
+        FactoryMethod/LandmarkBuilding.h
+        FactoryMethod/LandmarkBuildingFactory.h
+        FactoryMethod/Mall.h
+        FactoryMethod/Monument.h
+        FactoryMethod/Office.h
+        FactoryMethod/Park.h
+        FactoryMethod/PowerPlant.h
+        FactoryMethod/PWOut.h
+        FactoryMethod/ResidentialBuilding.h
+        FactoryMethod/Road.h
+        FactoryMethod/Shop.h
+        FactoryMethod/TrainStation.h
+        FactoryMethod/TransportBuilding.h
+        FactoryMethod/TransportBuildingFactory.h
+        FactoryMethod/UtilState.h
+        FactoryMethod/WasteOut.h
+        Strategy/CommunityServiceStrategy.h
+        Strategy/CommunityServiceStrategy.cpp
+        Strategy/CrimePunishmentStrategy.h
+        Strategy/CrimePunishmentStrategy.cpp
+        Strategy/DeathSentenceStrategy.h
+        Strategy/DeathSentenceStrategy.cpp
+        Strategy/PrisonStrategy.h
+        Strategy/PrisonStrategy.cpp
+        Visitor/BuildingReport.cpp
+        Visitor/BuildingReport.h
+        Visitor/Visitor.cpp
+        Visitor/Visitor.h
         tests/ExcellentMoodStateUnitTest.cpp
         tests/TaxSystemUnitTest.cpp
         tests/ComplaintsHandlerUnitTest.cpp
-        tests/ObserverUnitTest.cpp)
+        tests/ObserverUnitTest.cpp
+        tests/ComplaintRouterUnitTest.cpp
+        tests/BuildingFactoryTest.cpp)
 
 target_link_libraries(MementoMasters_tests gtest gtest_main)

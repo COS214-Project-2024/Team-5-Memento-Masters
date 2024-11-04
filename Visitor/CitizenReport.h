@@ -15,6 +15,7 @@ public:
     std::string generateReport() override;
     /// @brief Uses the provided passed in citizen to tally the Sum of mood and health values 
     /// @param citizen Used to calculate the average Mood and Health of all Citizens
+
       void visit(Citizen* citizen);
     ~CitizenReport();
 
@@ -25,3 +26,4 @@ int total;
 };
 
 #endif
+

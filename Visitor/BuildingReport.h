@@ -41,8 +41,8 @@ public:
     ~BuildingReport();
 
 private:
-/// @brief Used to store each buildings information for the count of each type
+
 int *types= new int[12];
 };
 
-#endif
+

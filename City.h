@@ -1,11 +1,16 @@
 #ifndef CITY_H
 #define CITY_H
 
+#include "CommandUI/MapNode.h"
+#include "Citizen.h"
+#include "Observer/CityObserver.h"
+
 #include <vector>
 #include <string>
-#include "Observer/CityObserver.h"
-#include "Citizen.h"
 #include <algorithm>
+#include <iostream>
+#include <iomanip>
+
 using namespace std;
 
 class City {
@@ -15,11 +20,28 @@ class City {
         double incomeTaxRate;
         double salesTaxRate;
         double propertyTaxRate;
+        vector<vector<MapNode>> map;
+        int population;
+        string name;
+        double budget;
+        double crimeRate;
+        int housingCapacity;
+        int housingDemand;
+        int powerCapacity;
+        int powerDemand;
+        int jobDemand;
+        int jobCapacity;
+        double trafficIndex;
+        double entertainmentIndex;
+        double healthcareIndex;
+        double educationIndex;
     protected:
 
     public:
         City();
-        ~City();
+
+        void initMap(int width, int height);
+
         void setIncomeTaxRate(double rate);
 
         void setSalesTaxRate(double rate);
@@ -46,12 +68,24 @@ class City {
          * @param taxType The type of tax that has changed
          * @param newRate The new rate of the tax
          */
-        void notify(const std::string& taxType, double newRate);
+        void notify(const string& taxType, double newRate);
 
-        std::vector<Citizen*> getCitizens();
+        vector<Citizen*> getCitizens();
         void addCitizen(Citizen* citizen);
         double getTaxRate();
-    void generateReport();
+
+        void constructBuilding(string buildingType, string coord, Building* buildptr);
+        void printMap();
+        bool hasBuildingAt(int row, int col) const;
+        string getBuildingTypeAt(int row, int col) const;
+        bool demolishBuilding(const string& coord);
+        string checkCoord(string coord, bool forRemoval = false);
+        void printStats();
+        bool updateBudget(double amount);
+  string generateReport();
+        ~City();
+
 };
 
-#endif
+
+
