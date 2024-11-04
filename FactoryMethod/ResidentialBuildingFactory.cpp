@@ -1,1 +1,6 @@
-// Concrete Factory
+#include <exception>
+#include <string>
+#include <vector>
+using namespace std;
+
+#include "ResidentialBuildingFactory.h"

@@ -1,15 +1,18 @@
+
+#include <string>
+using namespace std;
+
 #ifndef BUILDINGFACTORY_H
 #define BUILDINGFACTORY_H
 
 #include "Building.h"
 
-// Abstract factory class
-class BuildingFactory {
-public:
+class BuildingFactory
+{
+public: 
+    BuildingFactory() = default;
+    virtual Building* createBuilding(string type) = 0;
     virtual ~BuildingFactory() = default;
-    
-    // Factory method to create a building
-    virtual Building* createBuilding() = 0;
 };
 
-#endif // BUILDINGFACTORY_H
+#endif //BUILDINGFACTORY_H
