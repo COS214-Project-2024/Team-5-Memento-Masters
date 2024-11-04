@@ -3,6 +3,7 @@
 
 #include "CommandUI/MapNode.h"
 #include "Citizen.h"
+#include "Memento/CityMemento.h"
 #include "Observer/CityObserver.h"
 
 #include <vector>
@@ -38,6 +39,10 @@ class City {
     protected:
 
     public:
+        static int currentYear;  //for memento
+
+        CityMemento* saveToMemento(); //for memento
+
         City();
 
         void initMap(int width, int height);
@@ -82,8 +87,10 @@ class City {
         string checkCoord(string coord, bool forRemoval = false);
         void printStats();
         bool updateBudget(double amount);
-
+        string generateReport();
         ~City();
 
 };
 #endif //CITY_H
+
+

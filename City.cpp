@@ -24,6 +24,40 @@ City::~City(){
     //DECONSTRUCT CITY
 }
 
+int City::currentYear = 2024;  // Initialize the static year counter (Memento)
+
+CityMemento* City::saveToMemento() {  // for Memento
+    return new CityMemento(
+        incomeTaxRate, salesTaxRate, propertyTaxRate,
+        population, name, budget, crimeRate, housingCapacity, housingDemand,
+        powerCapacity, powerDemand, jobDemand, jobCapacity, trafficIndex,
+        entertainmentIndex, healthcareIndex, educationIndex, currentYear
+    );
+}
+
+void City::restoreFromMemento(CityMemento* memento) { //for Mementp
+    // map = memento->map;
+    // citizens = memento->citizens;
+    incomeTaxRate = memento->incomeTaxRate;
+    salesTaxRate = memento->salesTaxRate;
+    propertyTaxRate = memento->propertyTaxRate;
+    population = memento->population;
+    name = memento->name;
+    budget = memento->budget;
+    crimeRate = memento->crimeRate;
+    housingCapacity = memento->housingCapacity;
+    housingDemand = memento->housingDemand;
+    powerCapacity = memento->powerCapacity;
+    powerDemand = memento->powerDemand;
+    jobDemand = memento->jobDemand;
+    jobCapacity = memento->jobCapacity;
+    trafficIndex = memento->trafficIndex;
+    entertainmentIndex = memento->entertainmentIndex;
+    healthcareIndex = memento->healthcareIndex;
+    educationIndex = memento->educationIndex;
+    currentYear = memento->year;
+}
+
 void City::setIncomeTaxRate(double rate){
     this->incomeTaxRate = rate;
     notify("incomeTax", rate);
@@ -262,6 +296,33 @@ bool City::updateBudget(double amount){
         return true;
     } 
     return false;
+}
+
+string City::generateReport(){
+    RoadReport *roadReport = new RoadReport();
+    BuildingReport *buildingReport = new BuildingReport();
+    CitizenReport *citizenReport = new CitizenReport();
+
+    for (std::vector<MapNode> &row : map) {   
+    for (MapNode node : row) {           
+        node.getBuilding()->accept(buildingReport);    
+
+       
+        if (Road* road = dynamic_cast<Road*>(node.getBuilding())) {
+            road->accept(roadReport);      
+        }
+    }
+}
+    for (auto citizen : citizens) {
+        citizen->accept(citizenReport);
+    }
+    string str="Road Report:\n";
+    str+=roadReport->generateReport()+"\n";
+    str+="Building Report:\n";
+    str+=buildingReport->generateReport()+"\n";
+    str+="Citizen Report:\n";
+    str+=citizenReport->generateReport()+"\n";
+    return str;
 }
 
 // double City::getTaxRate(){

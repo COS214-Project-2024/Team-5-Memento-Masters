@@ -188,6 +188,6 @@ To add your own code, follow these steps
     make
     ```
 
-##Actions
-1.Lint-Error checking, and finding grammar issues or unused code.
-2.Doxygen- creating the doxygen webiste - [doxygen](https://memento-masters.pages.dev/)
+## Actions
+1.Lint-Error checking, and finding grammar issues or unused code when updating/merging.                            
+2.Doxygen- Automatically creating the doxygen webiste - [doxygen](https://memento-masters.pages.dev/) - on update/merge.

@@ -1,3 +1,4 @@
+
 #ifndef BUILDING_H
 #define BUILDING_H
 
@@ -81,5 +82,3 @@ public:
         // owner.clear();
     }
 };
-
-#endif // BUILDING_H
