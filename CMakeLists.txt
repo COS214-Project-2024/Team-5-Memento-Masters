@@ -238,6 +238,7 @@ add_executable(MementoMasters_tests
         tests/ComplaintsHandlerUnitTest.cpp
         tests/ObserverUnitTest.cpp
         tests/ComplaintRouterUnitTest.cpp
-        tests/BuildingFactoryTest.cpp)
+        tests/BuildingFactoryTest.cpp
+        tests/CrimePunishmentStrategyTest.cpp)
 
 target_link_libraries(MementoMasters_tests gtest gtest_main)
