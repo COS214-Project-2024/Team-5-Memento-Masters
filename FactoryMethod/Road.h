@@ -8,7 +8,7 @@ class Road: public TransportBuilding
 {
 public:
     Road(int cost = 10000) : TransportBuilding(cost, 100) {}
-        
+        void accept(RoadReport *v);
     ~Road() = default;
 };
 
