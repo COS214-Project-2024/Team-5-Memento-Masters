@@ -51,7 +51,7 @@ class City {
         std::vector<Citizen*> getCitizens();
         void addCitizen(Citizen* citizen);
         double getTaxRate();
-
+    void generateReport();
 };
 
 #endif
