@@ -18,7 +18,6 @@ add_executable(MementoMasters
         Citizen.cpp
         Citizen.h
         City.cpp
-        City.h
         CitizenMood/CitizenMood.cpp
         CitizenMood/CitizenMood.h
         CitizenMood/ExcellentMood.cpp
@@ -35,6 +34,8 @@ add_executable(MementoMasters
         Complaints/TransportDepartment.h
         Complaints/UtilitiesDepartment.cpp
         Complaints/UtilitiesDepartment.h
+        Complaints/Mayor.cpp
+        Complaints/Mayor.h
         Tax/TaxDepartment.cpp
         Tax/TaxDepartment.h
         Tax/TaxSystem.cpp
@@ -48,7 +49,6 @@ add_executable(MementoMasters_tests
         Citizen.cpp
         Citizen.h
         City.cpp 
-        City.h
         CitizenMood/CitizenMood.cpp
         CitizenMood/CitizenMood.h
         CitizenMood/ExcellentMood.cpp
@@ -65,6 +65,8 @@ add_executable(MementoMasters_tests
         Complaints/TransportDepartment.h
         Complaints/UtilitiesDepartment.cpp
         Complaints/UtilitiesDepartment.h
+        Complaints/Mayor.cpp
+        Complaints/Mayor.h
         Tax/TaxDepartment.cpp
         Tax/TaxDepartment.h
         Tax/TaxSystem.cpp
@@ -76,6 +78,7 @@ add_executable(MementoMasters_tests
         tests/ExcellentMoodStateUnitTest.cpp
         tests/TaxSystemUnitTest.cpp
         tests/ComplaintsHandlerUnitTest.cpp
-        tests/ObserverUnitTest.cpp)
+        tests/ObserverUnitTest.cpp
+        tests/ComplaintRouterUnitTest.cpp)
 
 target_link_libraries(MementoMasters_tests gtest gtest_main)
