@@ -4,19 +4,23 @@
 #ifndef BUILDCOMMAND_H
 #define BUILDCOMMAND_H
 
+#include <iostream>
 #include "Command.h"
-#include "City.h"
+#include "BuildingFactory.h"
 
 class BuildCommand : public Command
 {
-private:
-    City *city;
-    std::string buildingType; //  "Hospital"
 
 public:
-    BuildCommand(City *city, const std::string &buildingType);
+    BuildCommand(BuildingFactory* factory, const std::string& type);
+    ~BuildCommand();
     void execute();
     void undo();
+
+    private:
+    BuildingFactory *factory; //receiver
+    std::string type; //  "House"
+    Building* building;     // keep track of created building for undo
 };
 
 #endif // BUILDCOMMAND_H
