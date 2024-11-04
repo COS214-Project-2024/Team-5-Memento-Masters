@@ -1,27 +1,27 @@
-#ifndef CITY_H
-#define CITY_H
+// #ifndef CITY_H
+// #define CITY_H
 
-#include <string>
-#include <iostream>
+// #include <string>
+// #include <iostream>
 
-class City
-{
-private:
-    float taxRate;
-    int buildings;
+// class City
+// {
+// private:
+//     float taxRate;
+//     int buildings;
 
-public:
-    City();
+// public:
+//     City();
 
-    void adjustTax(float);
+//     void adjustTax(float);
 
-    void build(const std::string &);
+//     void build(const std::string &);
 
-    float getTaxRate() const;
+//     float getTaxRate() const;
 
-    int getBuildings() const;
+//     int getBuildings() const;
 
-    void removeBuilding();
-};
+//     void removeBuilding();
+// };
 
-#endif // CITY_H
+// #endif // CITY_H
