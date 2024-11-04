@@ -5,14 +5,11 @@ void ComplaintRouter::registerHandler(const std::string& complaintType, Complain
 }
 
 void ComplaintRouter::handleComplaint(const std::string& complaint) {
-    if (handlerMap.find(complaint) != handlerMap.end()) {
-        handlerMap[complaint]->handleComplaint(complaint);
+    std::string complaintType = complaint; 
+
+    if (handlerMap.find(complaintType) != handlerMap.end()) {
+        handlerMap[complaintType]->handleComplaint(complaint);
     } else {
-        std::cout << "ComplaintRouter: No specific handler found for " << complaint << ".\n";
-        if (handlerMap.find("default") != handlerMap.end()) {
-            handlerMap["default"]->handleComplaint(complaint);
-        } else {
-            std::cout << "ComplaintRouter: No default handler available.\n";
-        }
+        std::cout << "No handler found for complaint type: " << complaintType << std::endl;
     }
 }
