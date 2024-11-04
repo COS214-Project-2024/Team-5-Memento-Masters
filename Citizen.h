@@ -4,7 +4,7 @@
 #include "string"
 #include "vector"
 #include "CitizenMood/CitizenMood.h"
-
+#include "Visitor/BuildingReport.h"
 
 using namespace std;
 
@@ -56,7 +56,7 @@ public:
 
     //todo for strategy
     void punish(string crime);
-
+    void accept(CitizenReport *v);
 };
 
 
