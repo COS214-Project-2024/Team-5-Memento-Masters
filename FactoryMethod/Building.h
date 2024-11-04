@@ -1,4 +1,4 @@
-
+#include "Visitor/BuildingReport.h"
 #include <vector>
 #include <string>
 using namespace std;
