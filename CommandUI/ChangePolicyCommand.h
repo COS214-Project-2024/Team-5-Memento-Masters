@@ -4,6 +4,10 @@
 
 class ChangePolicyCommand : public MenuCommand {
 public:
+    ChangePolicyCommand(City* cityRef) : MenuCommand(cityRef){} 
+
+    ~ChangePolicyCommand() override {}
+
     void execute(Menu* currentMenu) override {
         string result = "";
         string indentation(2 * 4, ' ');

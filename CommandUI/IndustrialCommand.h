@@ -1,9 +1,22 @@
 #ifndef INDUSTRIALCOMMAND_H
 #define INDUSTRIALCOMMAND_H
+
+#include "../FactoryMethod/IndustrialBuildingFactory.h"
+#include "../FactoryMethod/Building.h"
 #include "Menu.h"
 
 class IndustrialCommand : public MenuCommand {
+private:
+    IndustrialBuildingFactory* factory;
 public:
+    IndustrialCommand(City* cityRef) : MenuCommand(cityRef){
+        factory = new IndustrialBuildingFactory();
+    } 
+
+    ~IndustrialCommand() override {
+        delete factory;
+    }
+
     void execute(Menu* currentMenu) override {
         string result = "";
         string indentation(2 * 4, ' ');
@@ -18,12 +31,15 @@ public:
         char input;
         cin >> input;
 
+        Building* newBuilding = nullptr;
+        string buildingType;
+
         switch (input){
             case 'a': 
-                result = "Factory";
+                buildingType = "Factory";
                 break;
             case 'b':
-                result = "Power Plant";
+                buildingType = "Power Plant";
                 break;
             default:
                 return;
@@ -31,12 +47,34 @@ public:
 
         cout << indentation << "Enter coordinates (e.g., A1): ";
         string coord = "";
-        cout << "\n" << indentation << "Enter your choice: ";
         cin >> coord;
 
-        cout << "\n" << indentation << "Building " << result << " at " << coord << "\n";
-        // Building logic here
-        // TODO link to factory method
+        string check = city->checkCoord(coord);
+
+        if (check != ""){
+           cout << "\n" << indentation << check << "\n";
+           return;
+        }
+
+        char colLetter = coord[0];
+        int colIndex = toupper(colLetter) - 'A';
+
+        int rowIndex = stoi(coord.substr(1)) - 1;
+
+        newBuilding = factory->createBuilding(buildingType);
+
+        if (!city->updateBudget(newBuilding->getCost())) {
+            cout << "\n" << indentation << "Insufficient funds!\n";
+            return;
+        }
+        
+        if (newBuilding != nullptr) {
+            // Add the building to the city at the specified coordinates
+            city->constructBuilding(buildingType, coord, newBuilding);
+            cout << "\n" << indentation << "Building " << buildingType << " at " << coord << "\n";
+        } else {
+            cout << "\n" << indentation << "Error: Failed to create building.\n";
+        }
     }
     
     const char* getDescription() const override {
