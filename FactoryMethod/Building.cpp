@@ -20,6 +20,10 @@ void Building::buy(Citizen* newOwner) {
 	throw "Not yet implemented";
 }
 
+void Building::accept(BuildingReport* v) {
+v->visit(this);
+}
+
 void Building::accept(Visitor* v) {
 	throw "Not yet implemented";
 }
