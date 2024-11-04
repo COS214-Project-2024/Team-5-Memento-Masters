@@ -1,7 +1,7 @@
 
 using namespace std;
 
-#include "Contruction.h"
+#include "Construction.h"
 
 void Contruction::operate() {
 	throw "Not yet implemented";

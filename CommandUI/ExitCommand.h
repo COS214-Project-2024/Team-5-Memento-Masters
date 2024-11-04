@@ -6,6 +6,10 @@
 
 class ExitCommand : public MenuCommand {
 public:
+    ExitCommand(City* cityRef) : MenuCommand(cityRef){} 
+
+    ~ExitCommand() override {}
+
     void execute(Menu* currentMenu) override {
         cout << "Exiting the program...\n";
         currentMenu->exit(); 

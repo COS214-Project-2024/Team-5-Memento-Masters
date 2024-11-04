@@ -1,33 +1,32 @@
-#ifndef COMMERCIALCOMMAND_H
-#define COMMERCIALCOMMAND_H
+#ifndef LANDMARKCOMMAND_H
+#define LANDMARKCOMMAND_H
 
-#include "../FactoryMethod/CommercialBuildingFactory.h"
+#include "../FactoryMethod/LandmarkBuildingFactory.h"
 #include "../FactoryMethod/Building.h"
 #include "Menu.h"
 
-class CommercialCommand : public MenuCommand {
+class LandmarkCommand : public MenuCommand {
 private:
-    CommercialBuildingFactory* factory;
+    LandmarkBuildingFactory* factory;
 public:
-    CommercialCommand(City* cityRef) : MenuCommand(cityRef){
-        factory = new CommercialBuildingFactory();
+    LandmarkCommand(City* cityRef) : MenuCommand(cityRef){
+        factory = new LandmarkBuildingFactory();
     } 
 
-    ~CommercialCommand() override {
+    ~LandmarkCommand() override {
         delete factory;
     }
 
     void execute(Menu* currentMenu) override {
         string result = "";
         string indentation(2 * 4, ' ');
-
-        cout << "\n" << indentation << "=== Commercial Build Menu ===:\n";
-        cout << indentation << "Select Commercial structure to build:\n";
-        cout << indentation << "a. Shop\n";
-        cout << indentation << "b. Mall\n";
-        cout << indentation << "c. Office\n";
-        cout << indentation << "d. Cancel\n";
         
+        cout << "\n" << indentation << "=== Landmark Build Menu ===:\n";
+        cout << indentation << "Select Landmark structure to build:\n";
+        cout << indentation << "a. Park\n";
+        cout << indentation << "b. Monument\n";
+        cout << indentation << "c. Cancel\n";
+
         cout << indentation;
         char input;
         cout << "\n" << indentation << "Enter your choice: ";
@@ -38,13 +37,10 @@ public:
 
         switch (input){
             case 'a': 
-                buildingType = "Shop";
+                buildingType = "Park";
                 break;
             case 'b':
-                buildingType = "Mall";
-                break;
-            case 'c':
-                buildingType = "Office";
+                buildingType = "Monument";
                 break;
             default:
                 return;
@@ -83,8 +79,8 @@ public:
     }
     
     const char* getDescription() const override {
-        return "Build Commercial Building";
+        return "Build Landmark Building";
     }
 };
 
-#endif // COMMERCIALCOMMAND_H
+#endif // LANDMARKCOMMAND_H

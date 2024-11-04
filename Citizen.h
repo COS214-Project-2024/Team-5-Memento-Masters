@@ -5,7 +5,6 @@
 #include "vector"
 #include "CitizenMood/CitizenMood.h"
 
-
 using namespace std;
 
 class CitizenMood;
@@ -58,7 +57,5 @@ public:
     void punish(string crime);
 
 };
-
-
 
 #endif //CITIZEN_H

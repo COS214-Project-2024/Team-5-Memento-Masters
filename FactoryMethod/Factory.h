@@ -7,7 +7,7 @@
 class Factory: public IndustrialBuilding
 {
 public:
-    Factory(int cost = 1000000) : IndustrialBuilding(cost, 100.0, 50.0) {}
+    Factory(int cost = 200000) : IndustrialBuilding(cost, 100.0, 50.0) {}
         
     ~Factory() = default;
 };

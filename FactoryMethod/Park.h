@@ -7,7 +7,7 @@
 class Park: public LandmarkBuilding
 {
 public:
-    Park(int cost = 1000000) : LandmarkBuilding(cost, 100) {}
+    Park(int cost = 15000) : LandmarkBuilding(cost, 100) {}
         
     ~Park() = default;
 };

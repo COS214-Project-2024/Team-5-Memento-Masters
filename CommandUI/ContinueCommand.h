@@ -2,13 +2,17 @@
 #define CONTINUECOMMAND_H
 #include "Menu.h"
 
-
-
 class ContinueCommand : public MenuCommand {
 public:
+    ContinueCommand(City* cityRef) : MenuCommand(cityRef){} 
+
+    ~ContinueCommand() override {}
+
     void execute(Menu* currentMenu) override {
         Menu continueMenu("Continue Menu", currentMenu);
-        cout << "Continuing Simulation";
+        cout << "Continuing Simulation\n";
+        city->printStats();
+        city->printMap();
 
         continueMenu.execute();
     }

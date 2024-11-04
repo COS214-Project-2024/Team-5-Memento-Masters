@@ -4,6 +4,10 @@
 
 class TaxCommand : public MenuCommand {
 public:
+    TaxCommand(City* cityRef) : MenuCommand(cityRef){} 
+
+    ~TaxCommand() override {}
+    
     void execute(Menu* currentMenu) override {
         string result = "";
         string indentation(2 * 4, ' ');

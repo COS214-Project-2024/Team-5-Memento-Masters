@@ -24,3 +24,6 @@ void Building::accept(Visitor* v) {
 	throw "Not yet implemented";
 }
 
+int Building::getCost(){
+    return cost;
+}

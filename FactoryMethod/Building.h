@@ -34,6 +34,8 @@ public:
 
     void accept(Visitor* v);
 
+    int getCost();
+
     virtual ~Building() {
         // delete buildingState;
         // currentOccupants.clear();

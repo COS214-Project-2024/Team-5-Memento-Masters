@@ -4,8 +4,3 @@
 using namespace std;
 
 #include "TransportBuildingFactory.h"
-
-Building* TransportBuildingFactory::createBuilding(string type) {
-	throw "Not yet implemented";
-}
-

@@ -7,7 +7,7 @@
 class Mall: public CommercialBuilding
 {
 public:
-    Mall(int cost = 1000000) : CommercialBuilding(cost, 100.0, 50.0) {}
+    Mall(int cost = 100000) : CommercialBuilding(cost, 100.0, 50.0) {}
         
     ~Mall() = default;
 };
