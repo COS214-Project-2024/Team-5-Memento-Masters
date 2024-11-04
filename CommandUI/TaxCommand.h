@@ -45,6 +45,17 @@ public:
         cout << "\n" << indentation << "Changing " << result << " Tax to " << tax << "%\n";
         // Tax update logic
         // TODO Tax update logic
+        try{
+            if(result == "Income"){
+                city->setIncomeTaxRate(stod(tax));
+            } else if(result == "Sales"){
+                city->setSalesTaxRate(stod(tax));
+            } else if(result == "Property"){
+                city->setPropertyTaxRate(stod(tax));
+            }
+        }catch(const std::exception& e){
+            cout << "Invalid input. Please enter a number.\n";
+        }
     }
     
     const char* getDescription() const override {

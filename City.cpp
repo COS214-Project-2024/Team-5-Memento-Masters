@@ -12,7 +12,7 @@ City::City() : incomeTaxRate(0.0), salesTaxRate(0.0), propertyTaxRate(0.0) {
     housingDemand = 0;
     powerCapacity = 0;
     powerDemand = 0;
-    jobDemand = 0;
+    employed = 0;
     jobCapacity = 0;
     trafficIndex = 0;
     entertainmentIndex = 0;
@@ -255,7 +255,7 @@ void City::printStats(){
     std::cout << std::fixed << std::setprecision(0);
     cout << " - Budget: " << budget << "\n";
     cout << " - Power Demand: " << powerDemand << "/" << powerCapacity << "\n";
-    cout << " - Job Demand: " << jobDemand << "/" << jobCapacity << "\n";
+    cout << " - Job Demand: " << employed << "/" << jobCapacity << "\n";
     cout << " - Housing Demand: " << housingDemand << "/" << housingCapacity << "\n";
 }
 
@@ -296,7 +296,11 @@ void City::updateEstimatedBuildValue(double amount){
 }
 
 int City::getJobAvailability(){
-    return jobCapacity - jobDemand;
+    return jobCapacity - employed;
+}
+
+void City::incEmployed(){
+    employed++;
 }
 
 // double City::getTaxRate(){

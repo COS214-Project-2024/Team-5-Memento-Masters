@@ -47,7 +47,20 @@ public:
         }
         
         //  Current citizens (increment age with visitor?)
-        
+        for(Citizen* citizen : city->getCitizens()) {
+            if(citizen->getJobTitle() == "") {  // Assuming you have a getter for jobTitle
+                for (int i = 0; i < city->getJobAvailability(); i++){
+                    std::random_device rd;
+                    std::mt19937 gen(rd());
+                    std::uniform_int_distribution<int> dist(1, 2);
+                    int gotJob = dist(gen);
+                    if(gotJob == 1){
+                        city->incEmployed();
+                        exit;
+                    }
+                }
+            }
+        }
 
 
         city->printStats();

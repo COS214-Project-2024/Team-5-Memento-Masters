@@ -30,7 +30,7 @@ class City {
         int housingDemand;
         int powerCapacity;
         int powerDemand;
-        int jobDemand;
+        int employed;
         int jobCapacity;
         double trafficIndex;
         double entertainmentIndex;
@@ -93,6 +93,7 @@ class City {
         double getEstimatedBuildValue();
         void updateEstimatedBuildValue(double amount);
         int getJobAvailability();
+        void incEmployed();
         
         ~City();
 
