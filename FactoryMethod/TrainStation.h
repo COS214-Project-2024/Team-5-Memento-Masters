@@ -7,7 +7,7 @@
 class TrainStation: public TransportBuilding
 {
 public:
-    TrainStation(int cost = 1000000) : TransportBuilding(cost, 100) {}
+    TrainStation(int cost = 500000) : TransportBuilding(cost, 100) {}
         
     ~TrainStation() = default;
 };

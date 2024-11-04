@@ -7,7 +7,7 @@
 class Office: public CommercialBuilding
 {
 public:
-    Office(int cost = 1000000) : CommercialBuilding(cost, 100.0, 50.0) {}
+    Office(int cost = 20000) : CommercialBuilding(cost, 100.0, 50.0) {}
         
     ~Office() = default;
 };

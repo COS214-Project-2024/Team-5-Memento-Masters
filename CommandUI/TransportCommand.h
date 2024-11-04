@@ -70,6 +70,7 @@ public:
 
         if (!city->updateBudget(newBuilding->getCost())) {
             cout << "\n" << indentation << "Insufficient funds!\n";
+            return;
         }
         
         if (newBuilding != nullptr) {

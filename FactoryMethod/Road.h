@@ -7,7 +7,7 @@
 class Road: public TransportBuilding
 {
 public:
-    Road(int cost = 1000000) : TransportBuilding(cost, 100) {}
+    Road(int cost = 10000) : TransportBuilding(cost, 100) {}
         
     ~Road() = default;
 };

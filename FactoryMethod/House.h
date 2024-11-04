@@ -7,7 +7,7 @@
 class House: public ResidentialBuilding
 {
 public:
-    House(int cost = 1000) : ResidentialBuilding(cost, 100.0, 4) {}
+    House(int cost = 10000) : ResidentialBuilding(cost, 100.0, 4) {}
         
     ~House() = default;
 };
