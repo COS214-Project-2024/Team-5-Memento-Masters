@@ -8,8 +8,7 @@
 
 class DeathSentenceStrategy : public CrimePunishmentStrategy {
 public:
-    std::string punish() const;
-    std::string punishCrime(const std::string& crime) const;
+    std::string punishCrime(const std::string& crime) const override;
 };
 
 #endif // DEATH_SENTENCE_STRATEGY_H

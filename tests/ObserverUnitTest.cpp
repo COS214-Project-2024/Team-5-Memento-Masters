@@ -26,14 +26,14 @@ protected:
 
 TEST_F(ObserverUnitTest, AttachObserver) {
     EXPECT_EQ(city->getCitizens().size(), 0);
-    Citizen* citizen = new Citizen("John Doe", 30, false, "Engineer");
+    Citizen* citizen = new Citizen("John Doe", 30, "Engineer");
     city->addCitizen(citizen);
     EXPECT_EQ(city->getCitizens().size(), 1);
     delete citizen;
 }
 
 TEST_F(ObserverUnitTest, NotifyObserversIncomeTax) {
-    Citizen* citizen = new Citizen("John Doe", 30, false, "Engineer");
+    Citizen* citizen = new Citizen("John Doe", 30, "Engineer");
     city->addCitizen(citizen);
     city->setIncomeTaxRate(0.12);
     EXPECT_EQ(typeid(*citizen->getMood()), typeid(AverageMood));
@@ -45,7 +45,7 @@ TEST_F(ObserverUnitTest, NotifyObserversIncomeTax) {
 }
 
 TEST_F(ObserverUnitTest, NotifyObserversSalesTax) {
-    Citizen* citizen = new Citizen("John Doe", 30, false, "Engineer");
+    Citizen* citizen = new Citizen("John Doe", 30, "Engineer");
     city->addCitizen(citizen);
     city->setSalesTaxRate(0.06);
     EXPECT_EQ(typeid(*citizen->getMood()), typeid(AverageMood));
@@ -57,7 +57,7 @@ TEST_F(ObserverUnitTest, NotifyObserversSalesTax) {
 }
 
 TEST_F(ObserverUnitTest, NotifyObserversPropertyTax) {
-    Citizen* citizen = new Citizen("John Doe", 30, false, "Engineer");
+    Citizen* citizen = new Citizen("John Doe", 30, "Engineer");
     city->addCitizen(citizen);
     city->setPropertyTaxRate(0.16);
     EXPECT_EQ(typeid(*citizen->getMood()), typeid(AverageMood));
