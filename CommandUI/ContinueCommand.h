@@ -11,6 +11,7 @@ public:
     void execute(Menu* currentMenu) override {
         Menu continueMenu("Continue Menu", currentMenu);
         cout << "Continuing Simulation\n";
+        city->printStats();
         city->printMap();
 
         continueMenu.execute();
