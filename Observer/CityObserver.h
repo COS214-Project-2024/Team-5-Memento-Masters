@@ -6,6 +6,7 @@
 class City;
 
 /**
+ * @class CityObserver
  * @brief Abstract class representing an observer for the City class
  */
 class CityObserver { 

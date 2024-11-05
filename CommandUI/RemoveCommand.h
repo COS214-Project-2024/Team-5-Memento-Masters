@@ -4,10 +4,24 @@
 #include "Menu.h"
 #include <iostream>
 
+/**
+ * @class RemoveCommand
+ * @brief Class representing the remove command
+ * 
+ * This class represents the remove command. It allows the user to remove a building from the map.
+ */
 class RemoveCommand : public MenuCommand {
 public:
+    /**
+     * @brief Constructor for RemoveCommand
+     * @param cityRef Pointer to the city object
+     */
     RemoveCommand(City* cityRef) : MenuCommand(cityRef) {}
 
+    /**
+     * @brief Executes the command
+     * @param currentMenu Pointer to the current menu
+     */
     void execute(Menu* currentMenu) override {
         string indentation(2 * 4, ' ');
 
@@ -63,6 +77,10 @@ public:
         }
     }
     
+    /**
+     * @brief Gets the description of the command
+     * @return The description of the command
+     */
     const char* getDescription() const override {
         return "Remove Building";
     }

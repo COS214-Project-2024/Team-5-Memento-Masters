@@ -6,16 +6,32 @@ using namespace std;
 
 #include "Building.h"
 
+/**
+ * @class TransportBuilding
+ * @brief A class representing a transport building
+ */
 class TransportBuilding: public Building
 {
 private: 
-    int efficiencyValue;
+    int efficiencyValue; ///< The efficiency value of the building
 
 public:
+    /**
+     * @brief Constructor
+     * @param cost The cost of the transport building
+     * @param effVal The efficiency value of the building
+     */
     TransportBuilding(int cost, int effVal = 0) : Building(cost, "Transport"), efficiencyValue(effVal) {}
 
+    /**
+     * @brief Gets the efficiency value of the building
+     * @return The efficiency value of the building
+     */
     void updateEfficiency();
 
+    /**
+     * @brief Destructor
+     */
     virtual ~TransportBuilding() = default;
 };
 

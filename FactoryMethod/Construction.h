@@ -5,10 +5,20 @@ using namespace std;
 
 #include "UtilState.h"
 
+/**
+ * @class Contruction
+ * @brief Defines a construction state
+ * 
+ * This class is a concrete state of the State design pattern.
+ */
 class Contruction: public UtilState
 {
-
-	public: void operate();
+	
+	public: 
+	/**
+	 * @brief Constructor
+	 */
+	void operate();
 };
 
 #endif //CONSTRUCTION_H

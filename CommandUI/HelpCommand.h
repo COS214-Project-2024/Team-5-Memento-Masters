@@ -2,14 +2,31 @@
 #define HELPCOMMAND_H
 #include "Menu.h"
 
-
-
+/**
+ * @class HelpCommand
+ * @brief Command to display help menu
+ * 
+ * This command allows the user to display the help menu
+ */
 class HelpCommand : public MenuCommand {
 public:
+    /**
+     * @brief Construct a new Help Command object
+     * 
+     * @param cityRef Reference to the City object
+     */
     HelpCommand(City* cityRef) : MenuCommand(cityRef){} 
 
+    /**
+     * @brief Destroy the Help Command object
+     */
     ~HelpCommand() override {}
 
+    /**
+     * @brief Execute the help command
+     * 
+     * @param currentMenu Pointer to the current menu
+     */
     void execute(Menu* currentMenu) override {
         Menu helpMenu("Help Menu", currentMenu);
         cout << "=== Help Menu ===\n";
@@ -31,6 +48,11 @@ public:
         helpMenu.execute();   
     }
     
+    /**
+     * @brief Get the Description of the command
+     * 
+     * @return const char* Description of the command
+     */
     const char* getDescription() const override {
         return "Get Help";
     }
