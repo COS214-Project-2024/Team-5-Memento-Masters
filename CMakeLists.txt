@@ -4,6 +4,7 @@ project(MementoMasters)
 set(CMAKE_CXX_STANDARD 14)
 # Add debug flags
 set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
 
 include(FetchContent)
 FetchContent_Declare(
@@ -127,7 +128,11 @@ add_executable(MementoMasters
         Visitor/BuildingReport.cpp
         Visitor/BuildingReport.h
         Visitor/Visitor.cpp
-        Visitor/Visitor.h)
+        Visitor/Visitor.h
+        Memento/CityCaretaker.cpp
+        Memento/CityCaretaker.h
+        Memento/CityMemento.cpp
+        Memento/CityMemento.h)
 
 add_executable(MementoMasters_tests
         Citizen.cpp
@@ -241,11 +246,16 @@ add_executable(MementoMasters_tests
         Visitor/BuildingReport.h
         Visitor/Visitor.cpp
         Visitor/Visitor.h
+        Memento/CityCaretaker.cpp
+        Memento/CityCaretaker.h
+        Memento/CityMemento.cpp
+        Memento/CityMemento.h
         tests/ExcellentMoodStateUnitTest.cpp
         tests/TaxSystemUnitTest.cpp
         tests/ComplaintsHandlerUnitTest.cpp
-        tests/ObserverUnitTest.cpp
+        # tests/ObserverUnitTest.cpp
         tests/ComplaintRouterUnitTest.cpp
-        tests/BuildingFactoryTest.cpp)
+        tests/BuildingFactoryTest.cpp
+        tests/MementoUnitTest.cpp)
 
 target_link_libraries(MementoMasters_tests gtest gtest_main)

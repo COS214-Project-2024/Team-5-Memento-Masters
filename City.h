@@ -5,6 +5,7 @@
 #include "Citizen.h"
 #include "Observer/CityObserver.h"
 #include "Tax/TaxSystem.h"
+#include "Memento/CityMemento.h"
 
 #include <vector>
 #include <string>
@@ -40,6 +41,7 @@ class City {
         double incomeSpeniture;
         double estimetedBuildValue;
         TaxSystem* TaxAuth;
+        static int currentYear;
 
     protected:
 
@@ -94,6 +96,14 @@ class City {
         void updateEstimatedBuildValue(double amount);
         int getJobAvailability();
         void incEmployed();
+        CityMemento* saveToMemento();
+        void restoreFromMemento(CityMemento* memento);
+        static int getCurrentYear();
+        static void setCurrentYear(int year);
+        double getIncomeTaxRate() const;
+        double getSalesTaxRate() const;
+        double getPropertyTaxRate() const;
+        double getTaxRate(char type) const;
         
         ~City();
 

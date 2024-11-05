@@ -1,6 +1,8 @@
 #include "City.h"
 #include "Tax/TaxSystem.h"
 
+int City::currentYear = 2024;
+
 City::City() : incomeTaxRate(0.0), salesTaxRate(0.0), propertyTaxRate(0.0) {
     //INITIALISE CITY
     // this->name = name;
@@ -24,29 +26,35 @@ City::City() : incomeTaxRate(0.0), salesTaxRate(0.0), propertyTaxRate(0.0) {
     estimetedBuildValue = 0;
 }
 
+int City::getCurrentYear() {
+    return currentYear;
+}
+
+void City::setCurrentYear(int year) {
+    currentYear = year;
+}
+
 City::~City(){
     //DECONSTRUCT CITY
 }
 
-void City::setIncomeTaxRate(double rate){
-    this->incomeTaxRate = rate;
-    notify("incomeTax", rate);
+void City::setIncomeTaxRate(double rate) {
+    TaxAuth->setIncomeTaxRate(rate);
+    notify("Income Tax", rate);
 }
 
-void City::setSalesTaxRate(double rate){
-    this->salesTaxRate = rate;
-    notify("salesTax", rate);
+void City::setSalesTaxRate(double rate) {
+    TaxAuth->setSalesTaxRate(rate);
+    notify("Sales Tax", rate);
 }
 
-void City::setPropertyTaxRate(double rate){
-    this->propertyTaxRate = rate;
-    notify("propertyTax", rate);
+void City::setPropertyTaxRate(double rate) {
+    TaxAuth->setPropertyTaxRate(rate);
+    notify("Property Tax", rate);
 }
 
 void City::attach(CityObserver* observer){
     this->observerList.push_back(observer);
-
-    //REMOVE?
     observer->setSubject(this);
 }
 
@@ -277,6 +285,18 @@ double City::getTaxRate(char type) {
     }
 }
 
+double City::getIncomeTaxRate() const {
+    return TaxAuth->getIncomeTaxRate();
+}
+
+double City::getSalesTaxRate() const {
+    return TaxAuth->getSalesTaxRate();
+}
+
+double City::getPropertyTaxRate() const {
+    return TaxAuth->getPropertyTaxRate();
+}
+
 double City::getAverageIncome(){
     return averageIncome;
 }
@@ -299,4 +319,38 @@ int City::getJobAvailability(){
 
 void City::incEmployed(){
     employed++;
+}
+
+CityMemento* City::saveToMemento() {
+    return new CityMemento(
+        TaxAuth->getIncomeTaxRate(), TaxAuth->getSalesTaxRate(), TaxAuth->getPropertyTaxRate(),
+        population, name, budget, crimeRate, housingCapacity, housingDemand, powerCapacity,
+        powerDemand, jobCapacity, employed,
+        trafficIndex, entertainmentIndex, healthcareIndex, educationIndex,
+        averageIncome, incomeSpeniture, estimetedBuildValue, currentYear
+    );
+}
+
+void City::restoreFromMemento(CityMemento* memento) {
+    TaxAuth->setIncomeTaxRate(memento->incomeTaxRate);
+    TaxAuth->setSalesTaxRate(memento->salesTaxRate);
+    TaxAuth->setPropertyTaxRate(memento->propertyTaxRate);
+    population = memento->population;
+    name = memento->name;
+    budget = memento->budget;
+    crimeRate = memento->crimeRate;
+    housingCapacity = memento->housingCapacity;
+    housingDemand = memento->housingDemand;
+    powerCapacity = memento->powerCapacity;
+    powerDemand = memento->powerDemand;
+    jobCapacity = memento->jobCapacity;
+    employed = memento->employed; 
+    trafficIndex = memento->trafficIndex;
+    entertainmentIndex = memento->entertainmentIndex;
+    healthcareIndex = memento->healthcareIndex;
+    educationIndex = memento->educationIndex;
+    averageIncome = memento->averageIncome;
+    incomeSpeniture = memento->incomeSpeniture;
+    estimetedBuildValue = memento->estimetedBuildValue;
+    currentYear = memento->year;
 }
