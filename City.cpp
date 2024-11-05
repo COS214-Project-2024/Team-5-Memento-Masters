@@ -1,4 +1,5 @@
 #include "City.h"
+#include "Tax/TaxSystem.h"
 
 City::City() : incomeTaxRate(0.0), salesTaxRate(0.0), propertyTaxRate(0.0) {
     //INITIALISE CITY
@@ -12,46 +13,15 @@ City::City() : incomeTaxRate(0.0), salesTaxRate(0.0), propertyTaxRate(0.0) {
     housingDemand = 0;
     powerCapacity = 0;
     powerDemand = 0;
-    jobDemand = 0;
+    employed = 0;
     jobCapacity = 0;
     trafficIndex = 0;
     entertainmentIndex = 0;
     healthcareIndex = 0;
     educationIndex = 0;
-}
-
-int City::currentYear = 2024;  // Initialize the static year counter (memento)
-
-CityMemento* City::saveToMemento() {  //for memento
-    return new CityMemento(
-        incomeTaxRate, salesTaxRate, propertyTaxRate,
-        population, name, budget, crimeRate, housingCapacity, housingDemand,
-        powerCapacity, powerDemand, jobDemand, jobCapacity, trafficIndex,
-        entertainmentIndex, healthcareIndex, educationIndex, currentYear
-    );
-}
-
-void City::restoreFromMemento(CityMemento* memento) {  //for memento
-    // map = memento->map;
-    // citizens = memento->citizens;
-    incomeTaxRate = memento->incomeTaxRate;
-    salesTaxRate = memento->salesTaxRate;
-    propertyTaxRate = memento->propertyTaxRate;
-    population = memento->population;
-    name = memento->name;
-    budget = memento->budget;
-    crimeRate = memento->crimeRate;
-    housingCapacity = memento->housingCapacity;
-    housingDemand = memento->housingDemand;
-    powerCapacity = memento->powerCapacity;
-    powerDemand = memento->powerDemand;
-    jobDemand = memento->jobDemand;
-    jobCapacity = memento->jobCapacity;
-    trafficIndex = memento->trafficIndex;
-    entertainmentIndex = memento->entertainmentIndex;
-    healthcareIndex = memento->healthcareIndex;
-    educationIndex = memento->educationIndex;
-    currentYear = memento->year;
+    averageIncome = 0;
+    incomeSpeniture = 0;
+    estimetedBuildValue = 0;
 }
 
 City::~City(){
@@ -101,6 +71,7 @@ std::vector<Citizen*> City::getCitizens(){
 
 void City::addCitizen(Citizen* citizen){
     this->citizens.push_back(citizen);
+    population++;
 }
 
 void City::initMap(int width, int height){
@@ -285,12 +256,11 @@ void City::printStats(){
     std::cout << std::fixed << std::setprecision(0);
     cout << " - Budget: " << budget << "\n";
     cout << " - Power Demand: " << powerDemand << "/" << powerCapacity << "\n";
-    cout << " - Job Demand: " << jobDemand << "/" << jobCapacity << "\n";
+    cout << " - Job Demand: " << employed << "/" << jobCapacity << "\n";
     cout << " - Housing Demand: " << housingDemand << "/" << housingCapacity << "\n";
 }
 
 bool City::updateBudget(double amount){
-    amount = -amount;
     if (budget + amount >= 0){
         budget = budget + amount;
         return true;
@@ -325,6 +295,35 @@ string City::generateReport(){
     return str;
 }
 
-// double City::getTaxRate(){
-//     return this->taxRate;
-// }   
+double City::getTaxRate(char type) {
+    switch (type) {
+        case 'I': return TaxAuth->getIncomeTaxRate();
+        case 'S': return TaxAuth->getSalesTaxRate();
+        case 'P': return TaxAuth->getPropertyTaxRate();
+        default: throw std::invalid_argument("Invalid Input you Dumbass...I - Income, S - Sales, P - Property");
+    }
+}
+
+double City::getAverageIncome(){
+    return averageIncome;
+}
+
+double City::getIncomeSpenditure(){
+    return incomeSpeniture;
+}
+
+double City::getEstimatedBuildValue(){
+    return estimetedBuildValue;
+}
+
+void City::updateEstimatedBuildValue(double amount){
+    estimetedBuildValue = estimetedBuildValue + amount;
+}
+
+int City::getJobAvailability(){
+    return jobCapacity - employed;
+}
+
+void City::incEmployed(){
+    employed++;
+}

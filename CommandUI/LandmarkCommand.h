@@ -63,11 +63,15 @@ public:
         int rowIndex = stoi(coord.substr(1)) - 1;
 
         newBuilding = factory->createBuilding(buildingType);
+        double value = newBuilding->getCost();
+        double cost = -value;
 
-        if (!city->updateBudget(newBuilding->getCost())) {
+        if (!city->updateBudget(cost)) {
             cout << "\n" << indentation << "Insufficient funds!\n";
             return;
         }
+
+        city->updateEstimatedBuildValue(value);
         
         if (newBuilding != nullptr) {
             // Add the building to the city at the specified coordinates

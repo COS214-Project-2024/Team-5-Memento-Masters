@@ -5,13 +5,13 @@
 #include <string>
 #include "MenuCommand.h"
 #include <iostream>
-using namespace std;
+
 
 class Menu {
 private:
     string title;
     int level;
-    vector<shared_ptr<MenuCommand>> commands;
+    std::vector<std::shared_ptr<MenuCommand>> commands;
     Menu* parentMenu;
     bool shouldExit;
 
