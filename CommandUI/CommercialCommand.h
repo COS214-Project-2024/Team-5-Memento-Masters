@@ -5,18 +5,37 @@
 #include "../FactoryMethod/Building.h"
 #include "Menu.h"
 
+/**
+ * @class CommercialCommand
+ * @brief Command to build commercial buildings.
+ * 
+ *  This command allows the user to build commercial structures such as shops
+ */
 class CommercialCommand : public MenuCommand {
 private:
-    CommercialBuildingFactory* factory;
+    CommercialBuildingFactory* factory; ///< Factory to create commercial buildings
 public:
+    /**
+     * @brief Construct a new Commercial Command object
+     * 
+     * @param cityRef Reference to the City object
+     */
     CommercialCommand(City* cityRef) : MenuCommand(cityRef){
         factory = new CommercialBuildingFactory();
     } 
 
+    /**
+     * @brief Destroy the Commercial Command object
+     */
     ~CommercialCommand() override {
         delete factory;
     }
 
+    /**
+     * @brief Execute the Commercial build command
+     * 
+     * @param currentMenu  Pointer to the current menu
+     */
     void execute(Menu* currentMenu) override {
         string result = "";
         string indentation(2 * 4, ' ');
@@ -86,6 +105,11 @@ public:
         }
     }
     
+    /**
+     * @brief Get the Description of the command
+     * 
+     * @return const char* Description of the command
+     */
     const char* getDescription() const override {
         return "Build Commercial Building";
     }

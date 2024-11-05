@@ -6,10 +6,18 @@ using namespace std;
 
 #include "UtilState.h"
 
+/**
+ * @class WasteOut
+ * @brief A class representing the state of the waste plant when it is out of waste
+ */
 class WasteOut: public UtilState
 {
 
-	public: void operate();
+	public:
+	/**
+	 * @brief Constructor
+	 */ 
+	void operate();
 };
 
 #endif

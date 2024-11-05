@@ -6,6 +6,7 @@
 #include "Citizen.h"
 
 /**
+ * @class CitizenObserver 
  * @brief Concrete observer class that observes changes in the city and updates citizens
  */
 class CitizenObserver : public CityObserver {

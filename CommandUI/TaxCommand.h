@@ -2,12 +2,31 @@
 #define TAXCOMMAND_H
 #include "Menu.h"
 
+/**
+ * @class TaxCommand
+ * @brief Command to update tax rates.
+ * 
+ * This command allows the user to update the income, sales, and property tax rates.
+ */
 class TaxCommand : public MenuCommand {
 public:
+    /**
+     * @brief Construct a new TaxCommand object.
+     * 
+     * @param cityRef Reference to the City object.
+     */
     TaxCommand(City* cityRef) : MenuCommand(cityRef){} 
 
+    /**
+     * @brief Destroy the TaxCommand object.
+     */
     ~TaxCommand() override {}
     
+    /**
+     * @brief Execute the tax update command.
+     * 
+     * @param currentMenu Pointer to the current menu.
+     */
     void execute(Menu* currentMenu) override {
         string result = "";
         string indentation(2 * 4, ' ');
@@ -58,6 +77,11 @@ public:
         }
     }
     
+    /**
+     * @brief Get the description of the command.
+     * 
+     * @return const char* Description of the command.
+     */
     const char* getDescription() const override {
         return "Update Tax Rates";
     }
