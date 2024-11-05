@@ -5,18 +5,38 @@
 #include "../FactoryMethod/Building.h"
 #include "Menu.h"
 
+/**
+ * @class ResidentialCommand
+ * @brief Command to build residential buildings.
+ * 
+ * This command allows the user to build residential structures such as houses
+ * and apartments.
+ */
 class ResidentialCommand : public MenuCommand {
 private:
-    ResidentialBuildingFactory* factory;
+    ResidentialBuildingFactory* factory; ///< Factory to create residential buildings
 public:
+    /**
+     * @brief Construct a new Residential Command object
+     * 
+     * @param cityRef Reference to the City object
+     */
     ResidentialCommand(City* cityRef) : MenuCommand(cityRef){
         factory = new ResidentialBuildingFactory();
     } 
 
+    /**
+     * @brief Destroy the Residential Command object
+     */
     ~ResidentialCommand() override {
         delete factory;
     }
 
+    /**
+     * @brief Execute the residential build command
+     * 
+     * @param currentMenu Pointer to the current menu
+     */
     void execute(Menu* currentMenu) override {
         string result = "";
         string indentation(2 * 4, ' ');
@@ -82,6 +102,11 @@ public:
         }
     }
     
+    /**
+     * @brief Get the Description of the command
+     * 
+     * @return const char* Description of the command
+     */
     const char* getDescription() const override {
         return "Build Residential Building";
     }

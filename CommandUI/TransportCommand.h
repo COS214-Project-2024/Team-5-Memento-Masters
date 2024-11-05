@@ -5,18 +5,37 @@
 #include "../FactoryMethod/Building.h"
 #include "Menu.h"
 
+/**
+ * @class TransportCommand
+ * @brief Command to build transportation buildings.
+ * 
+ * This command allows the user to build transportation structures such as roads, train stations, and airports.
+ */
 class TransportCommand : public MenuCommand {
 private:
-    TransportBuildingFactory* factory;
+    TransportBuildingFactory* factory; ///< Factory to create transportation buildings
 public:
+    /**
+     * @brief Construct a new TransportCommand object
+     * 
+     * @param cityRef Reference to the City object
+     */
     TransportCommand(City* cityRef) : MenuCommand(cityRef){
         factory = new TransportBuildingFactory();
     } 
 
+    /**
+     * @brief Destroy the TransportCommand object
+     */
     ~TransportCommand() override {
         delete factory;
     }
 
+    /**
+     * @brief Execute the transportation build command
+     * 
+     * @param currentMenu Pointer to the current menu
+     */
     void execute(Menu* currentMenu) override {
         string result = "";
         string indentation(2 * 4, ' ');
@@ -86,6 +105,11 @@ public:
         }
     }
     
+    /**
+     * @brief Get the description of the command.
+     * 
+     * @return const char* Description of the command.
+     */
     const char* getDescription() const override {
         return "Build Transportation";
     }

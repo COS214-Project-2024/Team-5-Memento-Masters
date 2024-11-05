@@ -2,12 +2,31 @@
 #define CHANGEPOLICYCOMMAND_H
 #include "Menu.h"
 
+/**
+ * @class ChangePolicyCommand
+ * @brief Command to change city policies.
+ * 
+ * This command allows the user to change city policies 
+ */
 class ChangePolicyCommand : public MenuCommand {
 public:
+    /**
+     * @brief Construct a new Change Policy Command object
+     * 
+     * @param cityRef 
+     */
     ChangePolicyCommand(City* cityRef) : MenuCommand(cityRef){} 
 
+    /**
+     * @brief Destroy the Change Policy Command object
+     */
     ~ChangePolicyCommand() override {}
 
+    /**
+     * @brief Execute the Change Policy command
+     * 
+     * @param currentMenu Pointer to the current menu
+     */
     void execute(Menu* currentMenu) override {
         string result = "";
         string indentation(2 * 4, ' ');
@@ -43,6 +62,11 @@ public:
         // TODO policy update logic
     }
     
+    /**
+     * @brief Get the Description of the command
+     * 
+     * @return const char* Description of the command
+     */
     const char* getDescription() const override {
         return "Update Policies";
     }
