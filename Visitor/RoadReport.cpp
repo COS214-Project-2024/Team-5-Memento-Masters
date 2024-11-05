@@ -10,7 +10,7 @@ std::string RoadReport::generateReport(){
 }
 
 void RoadReport::visit(Road *road){
-     efficiencySum += road->getEfficiencyValue();
+    //efficiencySum += road->getEfficiencyValue();
 }
 RoadReport::~RoadReport()
 {

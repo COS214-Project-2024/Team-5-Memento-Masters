@@ -4,6 +4,7 @@
 #include "CommandUI/MapNode.h"
 #include "Citizen.h"
 #include "Observer/CityObserver.h"
+#include "Tax/TaxSystem.h"
 
 #include <vector>
 #include <string>
@@ -29,12 +30,17 @@ class City {
         int housingDemand;
         int powerCapacity;
         int powerDemand;
-        int jobDemand;
+        int employed;
         int jobCapacity;
         double trafficIndex;
         double entertainmentIndex;
         double healthcareIndex;
         double educationIndex;
+        double averageIncome;
+        double incomeSpeniture;
+        double estimetedBuildValue;
+        TaxSystem* TaxAuth;
+
     protected:
 
     public:
@@ -72,7 +78,7 @@ class City {
 
         vector<Citizen*> getCitizens();
         void addCitizen(Citizen* citizen);
-        double getTaxRate();
+        double getTaxRate(char type);
 
         void constructBuilding(string buildingType, string coord, Building* buildptr);
         void printMap();
@@ -82,7 +88,13 @@ class City {
         string checkCoord(string coord, bool forRemoval = false);
         void printStats();
         bool updateBudget(double amount);
-
+        double getAverageIncome();
+        double getIncomeSpenditure();
+        double getEstimatedBuildValue();
+        void updateEstimatedBuildValue(double amount);
+        int getJobAvailability();
+        void incEmployed();
+        
         ~City();
 
 };
