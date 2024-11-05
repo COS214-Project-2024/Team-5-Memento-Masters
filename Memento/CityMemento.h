@@ -15,7 +15,7 @@ private:
     double budget; 
     double crimeRate;  
     int housingCapacity;  
-    int housingDemand;  
+    int hasHouse;  
     int powerCapacity;  
     int powerDemand;
     int jobCapacity;
@@ -34,7 +34,7 @@ private:
 public:
     CityMemento(double incomeTaxRate, double salesTaxRate, double propertyTaxRate,
                 int population, const std::string& name, double budget, double crimeRate,
-                int housingCapacity, int housingDemand, int powerCapacity,
+                int housingCapacity, int hasHouse, int powerCapacity,
                 int powerDemand, int jobCapacity, int employed,
                 double trafficIndex, double entertainmentIndex, double healthcareIndex, double educationIndex,
                 double averageIncome, double incomeSpeniture, double estimetedBuildValue, int year);
@@ -43,4 +43,4 @@ public:
     std::string toString() const;
 };
 
-#endif
+#endif // CITY_MEMENTO_H

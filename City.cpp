@@ -12,7 +12,6 @@ City::City() : incomeTaxRate(0.0), salesTaxRate(0.0), propertyTaxRate(0.0) {
     population = 0;
     crimeRate = 0;
     housingCapacity = 0;
-    housingDemand = 0;
     powerCapacity = 0;
     powerDemand = 0;
     employed = 0;
@@ -266,7 +265,7 @@ void City::printStats(){
     cout << " - Budget: " << budget << "\n";
     cout << " - Power Demand: " << powerDemand << "/" << powerCapacity << "\n";
     cout << " - Job Demand: " << employed << "/" << jobCapacity << "\n";
-    cout << " - Housing Demand: " << housingDemand << "/" << housingCapacity << "\n";
+    cout << " - Housing Demand: " << population << "/" << housingCapacity << "\n";
 }
 
 bool City::updateBudget(double amount){
@@ -322,10 +321,39 @@ void City::incEmployed(){
     employed++;
 }
 
+void City::decEmployed(){
+    if (employed != 0){
+        employed++;
+    }
+}
+
+int City::getPopulation(){
+    return population;
+}
+
+void City::updateAges(){
+    auto it = citizens.begin();
+    while (it != citizens.end()) {
+        Citizen* citizen = *it;
+        citizen->incAge();
+        
+        if (citizen->getAge() >= 91) {
+            if (citizen->getJobTitle() != "") {
+                decEmployed();  
+            }
+            delete citizen;  
+            it = citizens.erase(it); 
+            cout << "A citizen has passed away at age " << citizen->getAge() << "\n";
+        } else {
+            ++it;
+        }
+    }
+}
+
 CityMemento* City::saveToMemento() {
     return new CityMemento(
         TaxAuth->getIncomeTaxRate(), TaxAuth->getSalesTaxRate(), TaxAuth->getPropertyTaxRate(),
-        population, name, budget, crimeRate, housingCapacity, housingDemand, powerCapacity,
+        population, name, budget, crimeRate, housingCapacity, hasHouse, powerCapacity,
         powerDemand, jobCapacity, employed,
         trafficIndex, entertainmentIndex, healthcareIndex, educationIndex,
         averageIncome, incomeSpeniture, estimetedBuildValue, currentYear
@@ -341,7 +369,7 @@ void City::restoreFromMemento(CityMemento* memento) {
     budget = memento->budget;
     crimeRate = memento->crimeRate;
     housingCapacity = memento->housingCapacity;
-    housingDemand = memento->housingDemand;
+    hasHouse = memento->hasHouse;
     powerCapacity = memento->powerCapacity;
     powerDemand = memento->powerDemand;
     jobCapacity = memento->jobCapacity;

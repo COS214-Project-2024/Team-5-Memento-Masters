@@ -65,7 +65,26 @@ public:
             city->addCitizen(new Citizen("Imigrant", age, ""));
         }
         
-        //  Current citizens (increment age with visitor?)
+        //Existing Citizens
+        // Perform an Action
+        std::random_device rd;
+        std::mt19937 gen(rd());
+
+        // Generate action
+        std::uniform_int_distribution<int> actionDist(1, 7);
+        int actionIndex = actionDist(gen);
+
+        const auto& citizens = city->getCitizens();
+        if (!citizens.empty()) {  
+            std::uniform_int_distribution<int> citizenDist(0, citizens.size() - 1);
+            int randomCitizenIndex = citizenDist(gen);
+            
+            // Perform action on randomly selected citizen
+            citizens[randomCitizenIndex]->performAction(actionIndex);
+        }
+
+
+        // Assign Jobs
         for(Citizen* citizen : city->getCitizens()) {
             if(citizen->getJobTitle() == "") {  // Assuming you have a getter for jobTitle
                 for (int i = 0; i < city->getJobAvailability(); i++){
@@ -74,13 +93,16 @@ public:
                     std::uniform_int_distribution<int> dist(1, 2);
                     int gotJob = dist(gen);
                     if(gotJob == 1){
+                        citizen->setJobTitle("Employed");
                         city->incEmployed();
-                        exit;
+                        break;
                     }
                 }
             }
         }
 
+        //Update age, kill if 91
+        city->updateAges();
 
         city->printStats();
         city->printMap();

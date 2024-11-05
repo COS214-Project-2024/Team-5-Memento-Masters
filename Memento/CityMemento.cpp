@@ -10,7 +10,7 @@ CityMemento::CityMemento(double incomeTaxRate, double salesTaxRate, double prope
                          double averageIncome, double incomeSpeniture, double estimetedBuildValue, int year)
     : incomeTaxRate(incomeTaxRate), salesTaxRate(salesTaxRate), propertyTaxRate(propertyTaxRate),
       population(population), name(name), budget(budget), crimeRate(crimeRate),
-      housingCapacity(housingCapacity), housingDemand(housingDemand), powerCapacity(powerCapacity),
+      housingCapacity(housingCapacity), hasHouse(hasHouse), powerCapacity(powerCapacity),
       powerDemand(powerDemand), jobCapacity(jobCapacity), employed(employed), 
       trafficIndex(trafficIndex), entertainmentIndex(entertainmentIndex), healthcareIndex(healthcareIndex), educationIndex(educationIndex),
       averageIncome(averageIncome), incomeSpeniture(incomeSpeniture), estimetedBuildValue(estimetedBuildValue), year(year) {}
@@ -31,7 +31,7 @@ std::string CityMemento::toString() const {
         << "  \033[1;32mBudget:\033[0m " << budget << "\n"
         << "  \033[1;32mCrime Rate:\033[0m " << crimeRate << "\n"
         << "  \033[1;32mHousing Capacity:\033[0m " << housingCapacity << "\n"
-        << "  \033[1;32mHousing Demand:\033[0m " << housingDemand << "\n"
+        << "  \033[1;32mHousing Demand:\033[0m " << hasHouse << "\n"
         << "  \033[1;32mPower Capacity:\033[0m " << powerCapacity << "\n"
         << "  \033[1;32mPower Demand:\033[0m " << powerDemand << "\n"
         << "  \033[1;32mJob Capacity:\033[0m " << jobCapacity << "\n"

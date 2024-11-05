@@ -5,10 +5,14 @@
 #include "Complaints/ComplaintRouter.h"
 #include <stdexcept>
 
+class AverageMood;
+
 
 Citizen::Citizen(const string &name, int age, const string &jobTitle) //updated
-    : name(name), jobTitle(jobTitle), 
-      mood(NULL), punishmentStrategy(NULL) {}
+    : name(name), age(age), jobTitle(jobTitle),
+      mood(NULL), punishmentStrategy(NULL) {
+        cout << "Creating citizen, age: " << age << endl;
+      }
 
 
 void Citizen::setMood(CitizenMood *mood) {
@@ -32,8 +36,8 @@ int Citizen::getAge() const {
     return age;
 }
 
-void Citizen::setAge(int age) {
-    Citizen::age = age;
+void Citizen::incAge() {
+    age++;
 }
 
 const string &Citizen::getJobTitle() const {
@@ -66,9 +70,9 @@ void Citizen::makeComplaint(const string& complaint) {
     ComplaintRouter* router = ComplaintRouter::getInstance();
     router->handleComplaint(complaint);
     if (complaint == "noise" || complaint == "transport" || complaint == "utilities") {
-        this->mood->isPoor(this);
+        //this->mood->isPoor(this);
     } else {
-        this->mood->isAverage(this);
+        //this->mood->isAverage(this);
     }
 }
 
@@ -101,6 +105,40 @@ string Citizen::punish(const string& crime) { //new
 
 void Citizen::addCrime(const string& crime) {  //new
     crimes.push_back(crime);
+}
+
+void Citizen::performAction(int index){
+    switch (index){
+        case 1: 
+            makeComplaint("noise");
+            cout << name << " complained about a taxi\n";
+            break;
+        case 2:
+            makeComplaint("transport");
+            cout << name << " complained about utilities\n";
+            break;
+        case 3:
+            makeComplaint("utilities");
+            cout << name << " complained about exessive tax\n";
+            break;
+        case 4: 
+            makeComplaint("other");
+            cout << name << " complained about the mayor\n";
+            break;
+        case 5:
+            punish("A");
+            cout << name << " needs to do Com serve\n";
+            break;
+        case 6:
+            punish("B");
+            cout << name << " needs to go to prison\n";
+            break;
+        case 7:
+            punish("C");
+            cout << name << " needs to die\n";
+            break;
+    }
+
 }
 
 

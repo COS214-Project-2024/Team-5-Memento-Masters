@@ -28,7 +28,7 @@ class City {
         double budget; ///< The budget of the city
         double crimeRate; ///< The crime rate of the city
         int housingCapacity; ///< The housing capacity of the city
-        int housingDemand; ///< The housing demand of the city
+        int hasHouse; //hasHouse ///< The housing demand of the city
         int powerCapacity;  ///< The power capacity of the city
         int powerDemand; ///< The power demand of the city
         int employed; ///< The number of employed citizens in the city
@@ -207,7 +207,9 @@ class City {
         double getSalesTaxRate() const;
         double getPropertyTaxRate() const;
         double getTaxRate(char type) const;
-        
+        void decEmployed();
+        int getPopulation();
+        void updateAges();
         /**
          * @brief Get the name of the city
          * @return string The name of the city

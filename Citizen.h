@@ -77,7 +77,7 @@ public:
      * @brief Set the age of the citizen
      * @param age The age of the citizen
      */
-    void setAge(int age);
+    void incAge();
     /**
      * @brief Get the job title of the citizen
      * @return const string& The job title of the citizen
@@ -135,6 +135,7 @@ public:
      * @param crime The crime
      */
     void addCrime(const string& crime);
+    void performAction(int index);
 
     //OLD CRIMEPUNISHMENTSTRATEGY METHODS (revert back if problem)
     // void commitCrime(const string& crime);
