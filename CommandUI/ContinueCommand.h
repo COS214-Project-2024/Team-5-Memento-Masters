@@ -57,6 +57,14 @@ public:
         cout << " - Sales Tax = " << salesTax << "\n";
         cout << " - Property Tax = " << propertyTax << "\n";
 
+        // Add collected taxes to the city's budget
+        double totalTaxes = incomeTax + salesTax + propertyTax;
+        city->updateBudget(totalTaxes);
+
+        // Print the updated budget
+        cout << " - Total Taxes Collected = " << totalTaxes << "\n";
+        cout << " - Updated Budget = " << totalTaxes << "\n";
+
         // Update Citizens
         // New citizens
         int newCitizens = 0;
