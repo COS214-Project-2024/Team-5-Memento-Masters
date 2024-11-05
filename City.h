@@ -27,7 +27,7 @@ class City {
         double budget;
         double crimeRate;
         int housingCapacity;
-        int housingDemand;
+        int hasHouse; //hasHouse
         int powerCapacity;
         int powerDemand;
         int employed;
@@ -94,7 +94,9 @@ class City {
         void updateEstimatedBuildValue(double amount);
         int getJobAvailability();
         void incEmployed();
-        
+        void decEmployed();
+        int getPopulation();
+        void updateAges();
         ~City();
 
 };

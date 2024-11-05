@@ -9,7 +9,6 @@ City::City() : incomeTaxRate(0.0), salesTaxRate(0.0), propertyTaxRate(0.0) {
     population = 0;
     crimeRate = 0;
     housingCapacity = 0;
-    housingDemand = 0;
     powerCapacity = 0;
     powerDemand = 0;
     employed = 0;
@@ -256,7 +255,7 @@ void City::printStats(){
     cout << " - Budget: " << budget << "\n";
     cout << " - Power Demand: " << powerDemand << "/" << powerCapacity << "\n";
     cout << " - Job Demand: " << employed << "/" << jobCapacity << "\n";
-    cout << " - Housing Demand: " << housingDemand << "/" << housingCapacity << "\n";
+    cout << " - Housing Demand: " << population << "/" << housingCapacity << "\n";
 }
 
 bool City::updateBudget(double amount){
@@ -303,6 +302,31 @@ void City::incEmployed(){
     employed++;
 }
 
-// double City::getTaxRate(){
-//     return this->taxRate;
-// }   
+void City::decEmployed(){
+    if (employed != 0){
+        employed++;
+    }
+}
+
+int City::getPopulation(){
+    return population;
+}
+
+void City::updateAges(){
+    auto it = citizens.begin();
+    while (it != citizens.end()) {
+        Citizen* citizen = *it;
+        citizen->incAge();
+        
+        if (citizen->getAge() >= 91) {
+            if (citizen->getJobTitle() != "") {
+                decEmployed();  
+            }
+            delete citizen;  
+            it = citizens.erase(it); 
+            cout << "A citizen has passed away at age " << citizen->getAge() << "\n";
+        } else {
+            ++it;
+        }
+    }
+}

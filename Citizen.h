@@ -37,7 +37,7 @@ public:
     const string& getName() const;
     void setName(const string &name);
     int getAge() const;
-    void setAge(int age);
+    void incAge();
     const string& getJobTitle() const;
     void setJobTitle(const string &jobTitle);
     const vector<string>& getCrimes() const;
@@ -54,6 +54,7 @@ public:
     void setPunishmentStrategy(CrimePunishmentStrategy* strategy);
     string punish(const string& crime);
     void addCrime(const string& crime);
+    void performAction(int index);
 
     //OLD CRIMEPUNISHMENTSTRATEGY METHODS (revert back if problem)
     // void commitCrime(const string& crime);
