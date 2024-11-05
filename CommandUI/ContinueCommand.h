@@ -1,7 +1,9 @@
 #ifndef CONTINUECOMMAND_H
 #define CONTINUECOMMAND_H
+
 #include "Menu.h"
 #include "../Citizen.h"
+#include "../Memento/CityCaretaker.h"
 #include <random>
 
 /**
@@ -12,14 +14,16 @@
  */
 class ContinueCommand : public MenuCommand {
 private:
-    
+    CityCaretaker* caretaker; ///< Caretaker to manage city snapshots
+
 public:
     /**
      * @brief Construct a new Continue Command object
      * 
      * @param cityRef Reference to the City object
+     * @param caretakerRef Reference to the CityCaretaker object
      */
-    ContinueCommand(City* cityRef) : MenuCommand(cityRef){} 
+    ContinueCommand(City* cityRef, CityCaretaker* caretakerRef) : MenuCommand(cityRef), caretaker(caretakerRef) {}
 
     /**
      * @brief Destroy the Continue Command object
@@ -35,6 +39,14 @@ public:
         Menu continueMenu("Continue Menu", currentMenu);
         cout << "Continuing Simulation\n";
 
+        // Save the current state of the city
+        CityMemento* snapshot = city->saveToMemento();
+        caretaker->addMemento(City::getCurrentYear(), snapshot);
+
+        // Print the snapshot
+        cout << "\n--- Current Saved City ---\n";
+        cout << snapshot->toString() << "\n";
+
         // Collect taxes
         cout << "\n--- Collecting Tax ---\n";
         double incomeTax = city->getAverageIncome() * city->getTaxRate('I');
@@ -45,18 +57,18 @@ public:
         cout << " - Sales Tax = " << salesTax << "\n";
         cout << " - Property Tax = " << propertyTax << "\n";
 
-        //Update Citizens
-        //  New citizens
+        // Update Citizens
+        // New citizens
         int newCitizens = 0;
         int demand = std::round(city->getJobAvailability() / 2.0);
-        if (demand > 0){  //No jobs, no new people
+        if (demand > 0) {  // No jobs, no new people
             random_device rd;
             mt19937 gen(rd());
             uniform_int_distribution<int> dist(0, demand);
             newCitizens = dist(gen);
         }
 
-        for (int i = 0; i < newCitizens; i++){
+        for (int i = 0; i < newCitizens; i++) {
             std::random_device rd;
             std::mt19937 gen(rd());
             std::uniform_int_distribution<int> dist(1, 90);
@@ -64,8 +76,8 @@ public:
 
             city->addCitizen(new Citizen("Imigrant", age, ""));
         }
-        
-        //Existing Citizens
+
+        // Existing Citizens
         // Perform an Action
         std::random_device rd;
         std::mt19937 gen(rd());
@@ -75,24 +87,23 @@ public:
         int actionIndex = actionDist(gen);
 
         const auto& citizens = city->getCitizens();
-        if (!citizens.empty()) {  
+        if (!citizens.empty()) {
             std::uniform_int_distribution<int> citizenDist(0, citizens.size() - 1);
             int randomCitizenIndex = citizenDist(gen);
-            
+
             // Perform action on randomly selected citizen
             citizens[randomCitizenIndex]->performAction(actionIndex);
         }
 
-
         // Assign Jobs
-        for(Citizen* citizen : city->getCitizens()) {
-            if(citizen->getJobTitle() == "") {  // Assuming you have a getter for jobTitle
-                for (int i = 0; i < city->getJobAvailability(); i++){
+        for (Citizen* citizen : city->getCitizens()) {
+            if (citizen->getJobTitle() == "") {  // Assuming you have a getter for jobTitle
+                for (int i = 0; i < city->getJobAvailability(); i++) {
                     std::random_device rd;
                     std::mt19937 gen(rd());
                     std::uniform_int_distribution<int> dist(1, 2);
                     int gotJob = dist(gen);
-                    if(gotJob == 1){
+                    if (gotJob == 1) {
                         citizen->setJobTitle("Employed");
                         city->incEmployed();
                         break;
@@ -101,7 +112,7 @@ public:
             }
         }
 
-        //Update age, kill if 91
+        // Update age, kill if 91
         city->updateAges();
 
         city->printStats();
@@ -109,7 +120,7 @@ public:
 
         continueMenu.execute();
     }
-    
+
     /**
      * @brief Get the Description of the command
      * 
@@ -119,4 +130,5 @@ public:
         return "Continue Simulation";
     }
 };
+
 #endif // CONTINUECOMMAND_H

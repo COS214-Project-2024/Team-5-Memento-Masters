@@ -10,6 +10,7 @@
 #include "CitizenMood/ExcellentMood.h"
 #include "CitizenMood/AverageMood.h"
 #include "CitizenMood/PoorMood.h"
+#include "Memento/CityCaretaker.h"
 
 #include <iostream>
 #include <vector>
@@ -52,11 +53,15 @@ int main(int argc, char const *argv[]) {
         cout << citizen->getName() << "'s mood health: " << citizen->calculateHealth() << endl;
     }
 
+    // Initialize CityCaretaker
+    CityCaretaker caretaker;
+
+    // Create the main menu and add commands
     Menu mainMenu("CityBuilder Main Menu");
 
     mainMenu.addCommand(std::make_shared<BuildCommand>(c1));
     mainMenu.addCommand(std::make_shared<PolicyCommand>(c1));
-    mainMenu.addCommand(std::make_shared<ContinueCommand>(c1));
+    mainMenu.addCommand(std::make_shared<ContinueCommand>(c1, &caretaker));
     mainMenu.addCommand(std::make_shared<HelpCommand>(c1));
     mainMenu.addCommand(std::make_shared<ExitCommand>(c1));
 
@@ -65,6 +70,8 @@ int main(int argc, char const *argv[]) {
     for (Citizen* citizen : citizens) {
         delete citizen;
     }
+
+    delete c1;
 
     return 0;
 }
