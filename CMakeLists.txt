@@ -253,7 +253,6 @@ add_executable(MementoMasters_tests
         tests/ExcellentMoodStateUnitTest.cpp
         tests/TaxSystemUnitTest.cpp
         tests/ComplaintsHandlerUnitTest.cpp
-        # tests/ObserverUnitTest.cpp
         tests/ComplaintRouterUnitTest.cpp
         tests/BuildingFactoryTest.cpp
         tests/MementoUnitTest.cpp)

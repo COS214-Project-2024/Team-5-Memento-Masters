@@ -24,6 +24,7 @@ City::City() : incomeTaxRate(0.0), salesTaxRate(0.0), propertyTaxRate(0.0) {
     averageIncome = 0;
     incomeSpeniture = 0;
     estimetedBuildValue = 0;
+    TaxAuth = TaxSystem::getInstance();
 }
 
 int City::getCurrentYear() {

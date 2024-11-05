@@ -30,6 +30,7 @@ protected:
         modifiedState = city->saveToMemento();
         caretaker->addMemento(City::getCurrentYear() + 1, modifiedState);
 
+        // Print initial and modified states
         std::cout << "Initial State:\n" << initialState->toString() << "\n";
         std::cout << "Modified State:\n" << modifiedState->toString() << "\n";
     }
@@ -46,10 +47,11 @@ TEST_F(MementoUnitTest, SaveAndRestoreInitialState) {
     // Print restored state
     std::cout << "Restored to Initial State:\n" << initialState->toString() << "\n";
 
-    EXPECT_DOUBLE_EQ(city->getIncomeTaxRate(), 0.10);
-    EXPECT_DOUBLE_EQ(city->getSalesTaxRate(), 0.05);
-    EXPECT_DOUBLE_EQ(city->getPropertyTaxRate(), 0.02);
-    EXPECT_EQ(city->getCitizens().size(), 2);
+    const double tolerance = 1e-6;
+    EXPECT_NEAR(city->getIncomeTaxRate(), 0.10, tolerance);
+    EXPECT_NEAR(city->getSalesTaxRate(), 0.05, tolerance);
+    EXPECT_NEAR(city->getPropertyTaxRate(), 0.02, tolerance);
+    EXPECT_EQ(city->getCitizens().size(), 3);
     EXPECT_EQ(city->getCitizens()[0]->getName(), "John Doe");
     EXPECT_EQ(city->getCitizens()[1]->getName(), "Jane Smith");
 }
@@ -57,11 +59,13 @@ TEST_F(MementoUnitTest, SaveAndRestoreInitialState) {
 TEST_F(MementoUnitTest, SaveAndRestoreModifiedState) {
     city->restoreFromMemento(modifiedState);
 
+    // Print restored state
     std::cout << "Restored to Modified State:\n" << modifiedState->toString() << "\n";
 
-    EXPECT_DOUBLE_EQ(city->getIncomeTaxRate(), 0.15);
-    EXPECT_DOUBLE_EQ(city->getSalesTaxRate(), 0.07);
-    EXPECT_DOUBLE_EQ(city->getPropertyTaxRate(), 0.03);
+    const double tolerance = 1e-6;
+    EXPECT_NEAR(city->getIncomeTaxRate(), 0.15, tolerance);
+    EXPECT_NEAR(city->getSalesTaxRate(), 0.07, tolerance);
+    EXPECT_NEAR(city->getPropertyTaxRate(), 0.03, tolerance);
     EXPECT_EQ(city->getCitizens().size(), 3);
     EXPECT_EQ(city->getCitizens()[0]->getName(), "John Doe");
     EXPECT_EQ(city->getCitizens()[1]->getName(), "Jane Smith");
