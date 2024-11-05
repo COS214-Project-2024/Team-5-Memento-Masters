@@ -1,4 +1,5 @@
 #include "City.h"
+#include "Tax/TaxSystem.h"
 
 City::City() : incomeTaxRate(0.0), salesTaxRate(0.0), propertyTaxRate(0.0) {
     //INITIALISE CITY
@@ -266,15 +267,12 @@ bool City::updateBudget(double amount){
     return false;
 }
 
-double City::getTaxRate(char type){
-    if(type == 'I'){
-        return incomeTaxRate;
-    } else if(type == 'S'){
-        return salesTaxRate;
-    } if(type == 'P'){
-        return propertyTaxRate;
-    } else {
-        return 0;
+double City::getTaxRate(char type) {
+    switch (type) {
+        case 'I': return TaxAuth->getIncomeTaxRate();
+        case 'S': return TaxAuth->getSalesTaxRate();
+        case 'P': return TaxAuth->getPropertyTaxRate();
+        default: throw std::invalid_argument("Invalid Input you Dumbass...I - Income, S - Sales, P - Property");
     }
 }
 
