@@ -6,23 +6,41 @@
 #include "MenuCommand.h"
 #include <iostream>
 
-
+/**
+ * @class Menu
+ * @brief Class representing a menu
+ * 
+ * This class represents a menu. It contains a list of commands and can display them to the user.
+ */
 class Menu {
 private:
-    string title;
-    int level;
-    std::vector<std::shared_ptr<MenuCommand>> commands;
-    Menu* parentMenu;
-    bool shouldExit;
+    string title; ///< Title of the menu
+    int level; ///< Level of the menu
+    std::vector<std::shared_ptr<MenuCommand>> commands; ///< List of commands
+    Menu* parentMenu; ///< Pointer to the parent menu
+    bool shouldExit; ///< Flag to exit the menu
 
 public:
+    /**
+     * @brief Constructor for Menu
+     * @param menuTitle Title of the menu
+     * @param parent Pointer to the parent menu
+     * @param lvl Level of the menu
+     */
     Menu(const string& menuTitle, Menu* parent = nullptr, int lvl = 0) 
         : title(menuTitle), parentMenu(parent), shouldExit(false), level(lvl) {}
 
+    /**
+     * @brief Adds a command to the menu
+     * @param command Pointer to the command
+     */
     void addCommand(shared_ptr<MenuCommand> command) {
         commands.push_back(command);
     }
 
+    /**
+     * @brief Displays the menu
+     */
     void display() const {
         string indentation(level * 4, ' ');
         cout << "\n" << indentation << "=== " << title << " ===\n";
@@ -35,6 +53,9 @@ public:
         cout << "\n" << indentation << "Enter your choice: ";
     }
 
+    /**
+     * @brief Executes the menu
+     */
     void execute() {
         while (!shouldExit) {
             display();
@@ -59,6 +80,9 @@ public:
         }
     }
 
+    /**
+     * @brief Exits the menu
+     */
     void exit() {
         shouldExit = true;
     }

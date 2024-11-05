@@ -5,18 +5,38 @@
 #include "../FactoryMethod/Building.h"
 #include "Menu.h"
 
+/**
+ * @class IndustrialCommand
+ * @brief Command to build industrial buildings.
+ * 
+ * This command allows the user to build industrial structures such as factories
+ * and power plants.
+ */
 class IndustrialCommand : public MenuCommand {
 private:
-    IndustrialBuildingFactory* factory;
+    IndustrialBuildingFactory* factory; ///< Factory to create industrial buildings
 public:
+    /**
+     * @brief Construct a new Industrial Command object
+     * 
+     * @param cityRef Reference to the City object
+     */
     IndustrialCommand(City* cityRef) : MenuCommand(cityRef){
         factory = new IndustrialBuildingFactory();
     } 
 
+    /**
+     * @brief Destroy the Industrial Command object
+     */
     ~IndustrialCommand() override {
         delete factory;
     }
 
+    /**
+     * @brief Execute the Industrial build command
+     * 
+     * @param currentMenu  Pointer to the current menu
+     */
     void execute(Menu* currentMenu) override {
         string result = "";
         string indentation(2 * 4, ' ');
@@ -81,6 +101,11 @@ public:
         }
     }
     
+    /**
+     * @brief Get the description of the command.
+     * 
+     * @return const char* Description of the command.
+     */
     const char* getDescription() const override {
         return "Build Industrial Building";
     }

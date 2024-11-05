@@ -4,14 +4,33 @@
 #include "../Citizen.h"
 #include <random>
 
+/**
+ * @class ContinueCommand
+ * @brief Command to continue the simulation.
+ * 
+ * This command allows the user to continue the simulation
+ */
 class ContinueCommand : public MenuCommand {
 private:
     
 public:
+    /**
+     * @brief Construct a new Continue Command object
+     * 
+     * @param cityRef Reference to the City object
+     */
     ContinueCommand(City* cityRef) : MenuCommand(cityRef){} 
 
+    /**
+     * @brief Destroy the Continue Command object
+     */
     ~ContinueCommand() override {}
 
+    /**
+     * @brief Execute the continue command
+     * 
+     * @param currentMenu Pointer to the current menu
+     */
     void execute(Menu* currentMenu) override {
         Menu continueMenu("Continue Menu", currentMenu);
         cout << "Continuing Simulation\n";
@@ -69,6 +88,11 @@ public:
         continueMenu.execute();
     }
     
+    /**
+     * @brief Get the Description of the command
+     * 
+     * @return const char* Description of the command
+     */
     const char* getDescription() const override {
         return "Continue Simulation";
     }

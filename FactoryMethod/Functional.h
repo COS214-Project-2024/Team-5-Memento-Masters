@@ -6,10 +6,20 @@ using namespace std;
 
 #include "UtilState.h"
 
+/**
+ * @class Functional
+ * @brief Defines a functional state
+ * 
+ * This class is a concrete state of the State design pattern.
+ */
 class Functional: public UtilState
 {
 
-	public: void operate();
+	public: 
+	/**
+	 * @brief Constructor
+	 */
+	void operate();
 };
 
 #endif //FUNCTIONAL_H

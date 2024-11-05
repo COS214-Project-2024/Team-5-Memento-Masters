@@ -5,18 +5,37 @@
 #include "../FactoryMethod/Building.h"
 #include "Menu.h"
 
+/**
+ * @class LandmarkCommand
+ * @brief Command to build landmark buildings.
+ * 
+ * This command allows the user to build landmark structures such as parks and monuments.
+ */
 class LandmarkCommand : public MenuCommand {
 private:
-    LandmarkBuildingFactory* factory;
+    LandmarkBuildingFactory* factory; ///< Factory to create landmark buildings
 public:
+    /**
+     * @brief Construct a new Landmark Command object
+     * 
+     * @param cityRef Reference to the City object
+     */
     LandmarkCommand(City* cityRef) : MenuCommand(cityRef){
         factory = new LandmarkBuildingFactory();
     } 
 
+    /**
+     * @brief Destroy the Landmark Command object
+     */
     ~LandmarkCommand() override {
         delete factory;
     }
 
+    /**
+     * @brief Execute the Landmark build command
+     * 
+     * @param currentMenu  Pointer to the current menu
+     */
     void execute(Menu* currentMenu) override {
         string result = "";
         string indentation(2 * 4, ' ');
@@ -82,6 +101,11 @@ public:
         }
     }
     
+    /**
+     * @brief Get the description of the command.
+     * 
+     * @return const char* Description of the command.
+     */
     const char* getDescription() const override {
         return "Build Landmark Building";
     }
