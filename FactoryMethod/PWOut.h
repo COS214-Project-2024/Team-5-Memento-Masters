@@ -6,10 +6,18 @@ using namespace std;
 
 #include "UtilState.h"
 
+/**
+ * @class PWOut
+ * @brief A class representing the state of the power plant when it is out of power
+ */
 class PWOut: public UtilState
 {
 
-	public: void operate();
+	public: 
+	/**
+	 * @brief Constructor
+	 */
+	void operate();
 };
 
 #endif
